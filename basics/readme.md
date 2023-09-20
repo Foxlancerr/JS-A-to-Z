@@ -490,7 +490,9 @@ The backslash \ should not be confused with the forward slash /. They do not do 
 <hr>
 
 # 27-Escape Sequences in Strings
+
 Quotes are not the only characters that can be escaped inside a string. Escape sequences allow you to use characters you may not otherwise be able to use in a string.
+
 ```js
 Code	Output
 \'	single quote
@@ -502,6 +504,7 @@ Code	Output
 \b	backspace
 \f	form feed
 ```
+
 Note that the backslash itself must be escaped in order to display as a backslash.
 
 ```js
@@ -512,10 +515,83 @@ FirstLine
         \SecondLine
 ThirdLine
 ```
+
 <hr>
+
+# 28-Concatenating Strings with Plus Operator
+
+In JavaScript, when the + operator is used with a String value, it is called the concatenation operator. You can build a new string out of other strings by concatenating them together.
+
+Example
+
+```js
+console.log("My name is Alan," + " I concatenate.");
+```
+
+Note: Watch out for spaces. Concatenation does not add spaces between concatenated strings, so you'll need to add them yourself.
+
+Example:
+
+```js
+const ourStr = "I come first. " + "I come second.";
+```
+
+The string I come first. I come second. would be displayed in the console.
+
 <hr>
+
+# 29-Concatenating Strings with the Plus Equals Operator
+
+We can also use the <code>+=</code> operator to concatenate a string onto the end of an existing string variable. This can be very helpful to break a long string over several lines.
+
+Note:
+
+Watch out for spaces. Concatenation does not add spaces between concatenated strings, so you'll need to add them yourself.
+
+Example:
+
+```js
+let ourStr = "I come first. ";
+ourStr += "I come second.";
+```
+
+ourStr now has a value of the string I come first. I come second..
+
+Build myStr over several lines by concatenating these two strings:
+
+    This is the first sentence. and This is the second sentence.
+
 <hr>
+
+# 30-Constructing Strings with Variables
+
+    Sometimes you will need to build a string. By using the concatenation operator (+), you can insert one or more variables into a string you're building.
+
+Example:
+
+```js
+const ourName = "Muhammad";
+const ourStr = "Hello, My name is " + ourName + ", how are you?";
+```
+
+ourStr would have a value of the string Hello, our name is freeCodeCamp, how are you?.
+
 <hr>
+
+# 31-Appending Variables to Strings
+
+    Just as we can build a string over multiple lines out of string literals, we can also append variables to a string using the plus equals (+=) operator.
+
+Example:
+
+```js
+const anAdjective = "awesome!";
+let ourStr = "what a catch ";
+ourStr += anAdjective;
+```
+
+ourStr would have the value what a catch awesome!.
+
 <hr>
 <hr>
 <hr>
