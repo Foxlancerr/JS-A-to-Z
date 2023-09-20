@@ -275,6 +275,7 @@ const myVar = 16 / 2;
 myVar now has the value 8.
 
 Change the 0 so that the quotient is equal to 2.
+
 <hr>
 
 # 15-Increment a Number with JavaScript
@@ -290,3 +291,232 @@ i = i + 1;
 Note:
 
 The entire line becomes i++;, eliminating the need for the equal sign.
+
+<hr>
+
+# 16-Decrement a Number with JavaScript
+
+You can easily decrement or decrease a variable by one with the -- operator.
+
+```js
+i--;
+
+// is the equivalent of
+i = i - 1;
+```
+
+Note: The entire line becomes i--;, eliminating the need for the equal sign.
+
+<hr>
+
+# 17-Create Decimal Numbers with JavaScript
+
+We can store decimal numbers in variables too. Decimal numbers are sometimes referred to as floating point numbers or floats.
+
+Note:
+
+    when you compute numbers, they are computed with finite precision. Operations using floating points may lead to different results than the desired outcome. If you are getting one of these results, open a topic on the
+
+<hr>
+
+# 18-Multiply Two Decimals with JavaScript
+
+In JavaScript, you can also perform calculations with decimal numbers, just like whole numbers.
+
+Let's multiply two decimals together to get their product.
+
+```js
+const product = 2.0 * 4.6;
+```
+
+<hr>
+
+# 19-Divide One Decimal by Another with JavaScript
+
+Now let's divide one decimal by another.
+
+```js
+const divide = 10.0 / 2.2;
+```
+
+<hr>
+
+# 20-Finding a Remainder in JavaScript
+
+The remainder operator % gives the remainder of the division of two numbers.
+
+Example
+
+```js
+5 % 2 = 1
+5 / 2 = 2 //remainder 1
+2 * 2 = 4
+5 - 4 = 1
+```
+
+Usage
+
+In mathematics, a number can be checked to be even or odd by checking the remainder of the division of the number by 2. Even numbers have a remainder of 0, while odd numbers a remainder of 1.
+
+```js
+17 % 2 = 1
+48 % 2 = 0
+```
+
+Note:
+
+The remainder operator is sometimes incorrectly referred to as the modulus operator. It is very similar to modulus, but does not work properly with negative numbers.
+
+<hr>
+
+# 21-Compound Assignment With Augmented Addition
+
+    In programming, it is common to use assignments to modify the contents of a variable. Remember that everything to the right of the equals sign is evaluated first, so we can say:
+
+```js
+myVar = myVar + 5;
+```
+
+to add 5 to myVar. Since this is such a common pattern, there are operators which do both a mathematical operation and assignment in one step.
+
+    One such operator is the += operator.
+
+```js
+let myVar = 1;
+myVar += 5;
+console.log(myVar);
+// 6 would be displayed in the console.
+```
+
+<hr>
+
+# 22-Compound Assignment With Augmented Subtraction
+
+Like the += operator, -= subtracts a number from a variable.
+
+```js
+myVar = myVar - 5;
+```
+
+will subtract 5 from myVar. This can be rewritten as:
+
+```js
+myVar -= 5;
+```
+
+# 23-Compound Assignment With Augmented Multiplication
+
+The \*= operator multiplies a variable by a number.
+
+```js
+myVar = myVar * 5;
+```
+
+will multiply myVar by 5. This can be rewritten as:
+
+```js
+myVar *= 5;
+```
+
+<hr>
+
+# 24-Compound Assignment With Augmented Division
+
+The /= operator divides a variable by another number.
+
+```js
+myVar = myVar / 5;
+```
+
+Will divide myVar by 5. This can be rewritten as:
+
+```js
+myVar /= 5;
+```
+
+<hr>
+
+# 25-Escaping Literal Quotes in Strings
+
+When you are defining a string you must start and end with a single or double quote. What happens when you need a literal quote: " or ' inside of your string?
+
+    In JavaScript, you can escape a quote from considering it as an end of string quote by placing a backslash (\) in front of the quote.
+
+```js
+const sampleStr = 'Alan said, "Peter is learning JavaScript".';
+
+//without slash this will throw error
+console.log('lets"s start');
+```
+
+This signals to JavaScript that the following quote is not the end of the string, but should instead appear inside the string. So if you were to print this to the console, you would get:
+
+```js
+Alan said, "Peter is learning JavaScript".
+```
+
+<hr>
+
+# 26-Quoting Strings with Single Quotes
+
+    String values in JavaScript may be written with single or double quotes, as long as you start and end with the same type of quote. Unlike some other programming languages, single and double quotes work the same in JavaScript.
+
+```js
+const doubleQuoteStr = "This is a string";
+const singleQuoteStr = "This is also a string";
+```
+
+The reason why you might want to use one type of quote over the other is if you want to use both in a string. This might happen if you want to save a conversation in a string and have the conversation in quotes. Another use for it would be saving an \<a> tag with various attributes in quotes, all within a string.
+
+```js
+const conversation = 'Finn exclaims to Jake, "Algebraic!"';
+```
+
+However, this becomes a problem if you need to use the outermost quotes within it. Remember, a string has the same kind of quote at the beginning and end. But if you have that same quote somewhere in the middle, the string will stop early and throw an error.
+
+```js
+const goodStr = 'Jake asks Finn, "Hey, let\'s go on an adventure?"';
+const badStr = 'Finn responds, "Let's go!"';
+```
+
+Here badStr will throw an error.
+
+In the goodStr above, you can use both quotes safely by using the backslash \ as an escape character.
+
+Note:
+
+The backslash \ should not be confused with the forward slash /. They do not do the same thing.
+
+<hr>
+
+# 27-Escape Sequences in Strings
+Quotes are not the only characters that can be escaped inside a string. Escape sequences allow you to use characters you may not otherwise be able to use in a string.
+```js
+Code	Output
+\'	single quote
+\"	double quote
+\\	backslash
+\n	newline
+\t	tab
+\r	carriage return
+\b	backspace
+\f	form feed
+```
+Note that the backslash itself must be escaped in order to display as a backslash.
+
+```js
+console.log("FirstLine\n\t\\SecondLine\nThirdLine")
+// the output will look like
+
+FirstLine
+        \SecondLine
+ThirdLine
+```
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
