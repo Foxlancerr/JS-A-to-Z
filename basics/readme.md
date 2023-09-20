@@ -588,11 +588,238 @@ Example:
 const anAdjective = "awesome!";
 let ourStr = "what a catch ";
 ourStr += anAdjective;
+
+const someAdjective = "better way to boost your skill";
+let myStr = "Learning to code is ";
+myStr += someAdjective;
 ```
 
 ourStr would have the value what a catch awesome!.
 
 <hr>
+
+# 32-Find the Length of a String
+
+    You can find the length of a String value by writing .length after the string variable or string literal.
+
+```js
+console.log("Alan Peter".length);
+```
+
+The value 10 would be displayed in the console.
+
+Note that the space character between "Alan" and "Peter" is also counted.
+
+    For example, if we created a variable const firstName = "Ada", we could find out how long the string Ada is by using the firstName.length property.
+
 <hr>
+
+# 33-Use Bracket Notation to Find the First Character in a String
+
+    Bracket notation is a way to get a character at a specific index within a string.
+
+Most modern programming languages, like JavaScript, don't start counting at 1 like humans do. They start at 0. This is referred to as Zero-based indexing.
+
+    For example, the character at index 0 in the word Charles is C. So if const firstName = "Charles", you can get the value of the first letter of the string by using firstName[0].
+
+Example:
+
+```js
+const firstName = "Charles";
+console.log(firstName[0]);
+console.log(firstName[1]);
+console.log(firstName[2]);
+```
+
+The output is look like
+
+```
+C
+h
+a
+```
+
+<hr>
+
+# 34-Understand String Immutability
+
+    In JavaScript, String values are immutable, which means that they cannot be altered once created.
+
+For example, the following code will produce an error because the letter B in the string Bob cannot be changed to the letter J:
+
+```js
+let myStr = "Bob";
+myStr[0] = "J";
+```
+
+Note that this does not mean that myStr could not be re-assigned. The only way to change myStr would be to assign it with a new value, like this:
+
+```js
+let myStr = "Bob";
+myStr = "Job";
+```
+
+In case of array it work perfectly
+
+```js
+var array = ["ahmad", "sudais", "kamran"];
+console.log(array);
+array[0] = "imran";
+console.log(array);
+```
+
+<hr>
+
+# 35-Use Bracket Notation to Find the Nth Character in a String
+
+    You can also use bracket notation to get the    character at other positions within a string.
+
+    Remember that computers start counting at 0, so the first character is actually the zeroth character.
+
+### Example:
+
+```js
+const firstName = "Ada";
+const secondLetterOfFirstName = firstName[1];
+```
+
+<code>secondLetterOfFirstName</code> would have a value of the string d.
+
+<hr>
+
+# 35-Use Bracket Notation to Find the Last Character in a String
+
+In order to get the last letter of a string, you can subtract one from the string's length.
+
+    For example, if const firstName = "Ada", you can get the value of the last letter of the string by using
+
+    firstName[firstName.length - 1].
+
+### Example:
+
+```js
+const firstName = "Ada";
+const lastLetter = firstName[firstName.length - 1];
+console.log(lastName[lastName.length - 1]);
+```
+
+<code>lastLetter</code> would have a value of the string <code>a</code>
+
+<hr>
+
+# 36-Use Bracket Notation to Find the Nth-to-Last Character in a String
+
+You can use the same principle we just used to retrieve the last character in a string to retrieve the Nth-to-last character.
+
+    For example, you can get the value of the third-to-last letter of the const firstName = "Augusta" string by using
+
+    firstName[firstName.length - 3]
+
+Example:
+
+```js
+const firstName = "Augusta";
+const thirdToLastLetter = firstName[firstName.length - 3];
+console.log(lastName[lastName.length - 2]);
+```
+
+thirdToLastLetter would have a value of the string s.
+
+<hr>
+
+# Word Blanks
+
+    You are provided sentences with some missing words, like nouns, verbs, adjectives and adverbs. You then fill in the missing pieces with words of your choice in a way that the completed sentence makes sense.
+
+Consider this sentence:
+
+    It was really ____, and we ____ ourselves ____.
+
+This sentence has three missing pieces- an adjective, a verb and an adverb, and we can add words of our choice to complete it. We can then assign the completed sentence to a variable as follows:
+
+```js
+const sentence =
+  "It was really " +
+  "hot" +
+  ", and we " +
+  "laughed" +
+  " ourselves " +
+  "silly" +
+  ".";
+```
+
+## Task
+
+In this challenge, we provide you with a noun, a verb, an adjective and an adverb. You need to form a complete sentence using words of your choice, along with the words we provide.
+
+    You will need to use the string concatenation operator + to build a new string, using the provided variables: myNoun, myAdjective, myVerb, and myAdverb. You will then assign the formed string to the wordBlanks variable. You should not change the words assigned to the variables.
+
+    You will also need to account for spaces in your string, so that the final sentence has spaces between all the words. The result should be a complete sentence.
+
+## code
+
+```js
+const myNoun = "dog";
+const myAdjective = "big";
+const myVerb = "ran";
+const myAdverb = "quickly";
+
+// Only change code below this line
+const wordBlanks =
+  "The " + myAdjective + " " + myNoun + " " + myVerb + " " + myAdverb; // Change this line
+// Only change code above this line
+console.log(
+  "The " + myAdjective + " " + myNoun + " " + myVerb + " " + myAdverb
+);
+```
+
+<hr>
+
+# Store Multiple Values in one Variable using JavaScript Arrays
+
+    With JavaScript array variables, we can store several pieces of data in one place.
+
+You start an array declaration with an opening square bracket, end it with a closing square bracket, and put a comma between each entry, like this:
+
+```js
+const sandwich = ["peanut butter", "jelly", "bread"];
+```
+
+<hr>
+
+# Nest one Array within Another Array
+
+    You can also nest arrays within other arrays, like below:
+
+```js
+const teams = [
+  ["Bulls", 23],
+  ["White Sox", 45],
+];
+
+const myArray = [
+  ["ahmad",23],
+  ["sudais",34],
+  ["kamran",21]
+];
+```
+
+This is also called a multi-dimensional array.
+
+<hr>
+
+# Access Array Data with Indexes
+    We can access the data inside arrays using indexes.
+
+Array indexes are written in the same bracket notation that strings use, except that instead of specifying a character, they are specifying an entry in the array. Like strings, arrays use zero-based indexing, so the first element in an array has an index of 0.
+
+
+### Example
+```js
+const array = [50, 60, 70];
+console.log(array[0]);
+const data = array[1];
+//The console.log(array[0]) prints 50, and data has the value 60.
+```
 <hr>
 <hr>
