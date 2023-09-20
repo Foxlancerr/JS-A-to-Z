@@ -1110,7 +1110,7 @@ functionWithArgs(40, 34); //74
 
 <hr>
 
-# Return a Value from a Function with Return
+# 50-Return a Value from a Function with Return
 
 We can pass values into a function with arguments. You can use a return statement to send a value back out of a function.
 
@@ -1143,4 +1143,234 @@ console.log(timeFive(20)); //100
 console.log(timeFive(6)); //30
 ```
 
+<hr>
+
+# 51-Global Scope and Functions
+
+    In JavaScript, scope refers to the visibility of variables. Variables which are defined outside of a function block have Global scope. This means, they can be seen everywhere in your JavaScript code.
+
+    Variables which are declared without the let or const keywords are automatically created in the global scope. This can create unintended consequences elsewhere in your code or when running a function again. You should always declare your variables with let or const.
+
+### Task
+
+1. Using let or const, declare a global variable named myGlobal outside of any function. Initialize it with a value of 10.
+
+2. Inside function fun1, assign 5 to oopsGlobal without using the var, let or const keywords.
+
+### Solution
+
+```js
+let myGlobal = 10;
+function fun1() {
+  // here we cannot assign any datatypes so it will act as a global scope and access from every where
+  oopsGlobal = 5;
+}
+
+// in here we can access the oppsGlobal variable
+function fun2() {
+  let output = "";
+  if (typeof myGlobal != "undefined") {
+    output += "myGlobal: " + myGlobal;
+  }
+  if (typeof oopsGlobal != "undefined") {
+    output += " oopsGlobal: " + oopsGlobal;
+  }
+  console.log(output);
+}
+```
+
+<hr>
+
+# 52-Local Scope and Functions
+
+    Variables which are declared within a function, as well as the function parameters, have local scope. That means they are only visible within that function.
+
+Here is a function myTest with a local variable called loc.
+
+```js
+function myTest() {
+  const loc = "foo";
+  console.log(loc);
+}
+
+myTest();
+console.log(loc);
+```
+
+The myTest() function call will display the string foo in the console. The console.log(loc) line (outside of the myTest function) will throw an error, as loc is not defined outside of the function.
+
+The editor has two console.logs to help you see what is happening. Check the console as you code to see how it changes. Declare a local variable myVar inside myLocalScope and run the tests.
+
+### Note:
+
+The console will still display ReferenceError: myVar is not defined, but this will not cause the tests to fail.
+
+```js
+function myLocalScope() {
+  // Only change code below this line
+  var myVar = 20;
+
+  console.log("inside myLocalScope", myVar);
+}
+myLocalScope();
+
+// Run and check the console
+// myVar is not defined outside of myLocalScope
+console.log("outside myLocalScope", myVar);
+```
+
+<hr>
+
+# 53-Global vs. Local Scope in Functions
+
+    It is possible to have both local and global variables with the same name. When you do this, the local variable takes precedence over the global variable.
+
+In this example:
+
+```js
+const someVar = "Hat";
+
+function myFun() {
+  const someVar = "Head";
+  return someVar;
+}
+```
+
+The function myFun will return the string Head because the local version of the variable is present.
+
+### Task
+
+Add a local variable to myOutfit function to override the value of outerWear with the string sweater.
+
+```js
+// Setup
+const outerWear = "T-Shirt";
+console.log(outerWear);
+
+function myOutfit() {
+  const outerWear = "sweater";
+  console.log(outerWear);
+  return outerWear;
+}
+
+console.log(outerWear);
+
+myOutfit();
+```
+
+<hr>
+
+# 54-Understanding Undefined Value returned from a Function
+
+    A function can include the return statement but it does not have to. In the case that the function doesn't have a return statement, when you call it, the function processes the inner code but the returned value is undefined.
+
+### Example
+
+```js
+let sum = 0;
+
+function addSum(num) {
+  sum = sum + num;
+}
+
+addSum(3);
+```
+
+addSum is a function without a return statement. The function will change the global sum variable but the returned value of the function is undefined.
+
+### Task
+
+Create a function addFive without any arguments. This function adds 5 to the sum variable, but its returned value is undefined.
+
+```js
+// Setup
+let sum = 0;
+
+function addThree() {
+  sum = sum + 3;
+}
+
+// Only change code below this line
+
+function addFive() {
+  sum += 5;
+}
+
+// Only change code above this line
+
+console.log(addThree()); //undefined
+console.log(addFive()); //undefined
+```
+
+<hr>
+
+# 55-Assignment with a Returned Value
+
+    If you'll recall from our discussion about Storing Values with the Assignment Operator, everything to the right of the equal sign is resolved before the value is assigned. This means we can take the return value of a function and assign it to a variable.
+
+Assume we have defined a function sum which adds two numbers together.
+
+```js
+ourSum = sum(5, 12);
+```
+
+Calling the sum function with the arguments of 5 and 12 produces a return value of 17. This return value is assigned to the ourSum variable.
+
+### Task
+
+1. Call the processArg function with an argument of 7 and assign its return value to the variable processed.
+
+### Solution
+
+```js
+// Setup
+let processed = 0;
+
+function processArg(num) {
+  return (num + 3) / 5;
+}
+
+// Only change code below this line
+processed = processArg(7);
+```
+
+<hr>
+
+# 56-Stand in Line
+
+    In Computer Science a queue is an abstract Data Structure where items are kept in order. New items can be added at the back of the queue and old items are taken off from the front of the queue.
+
+### Task
+
+1. Write a function nextInLine which takes an array (arr) and a number (item) as arguments.
+
+2. Add the number to the end of the array, then remove the first element of the array.
+
+3. The nextInLine function should then return the element that was removed.
+
+### Solution
+
+```js
+function nextInLine(arr, item) {
+  arr.push(item);
+  return (item = arr.shift());
+}
+
+// Setup
+let testArr = [1, 2, 3, 4, 5];
+
+// Display code
+
+console.log("Before: " + JSON.stringify(testArr));
+console.log(nextInLine(testArr, 6));
+console.log("After: " + JSON.stringify(testArr));
+```
+### Note
+    1. JSON.stringify(obj) method will convert object into string
+    
+    2. There is another method which will convert string into Object,That method is JSON.parse(string)
+
+<hr>
+<hr>
+<hr>
 <hr>
