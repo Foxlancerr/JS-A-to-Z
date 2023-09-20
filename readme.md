@@ -1,8 +1,7 @@
-
 # JavaScript Algorithms and Data Structures
 
     While HTML and CSS control the content and styling of a page, JavaScript
-    is used to make it interactive. In the JavaScript Algorithm and Data 
+    is used to make it interactive. In the JavaScript Algorithm and Data
     Structures Certification, you'll learn the fundamentals of JavaScript
     including variables, arrays, objects, loops, and functions.
 
@@ -16,8 +15,6 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 <hr>
 
 ## Course Contents:
-
-
 
 ### Basic JavaScript
 
@@ -49,8 +46,8 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 ### Regular Expressions
 
     Regular expressions, often shortened to "regex" or "regexp", are patterns that help
-    programmers match, search, and replace text. Regular expressions are very powerful, 
-    but can be hard to read because they use special characters to make more complex, 
+    programmers match, search, and replace text. Regular expressions are very powerful,
+    but can be hard to read because they use special characters to make more complex,
     flexible matches.
 
     In this course, you'll learn how to use special characters, capture groups, positive
@@ -62,7 +59,7 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 
     Debugging is the process of going through your code, finding any issues, and fixing them.
 
-    Issues in code generally come in three forms: syntax errors that prevent your program 
+    Issues in code generally come in three forms: syntax errors that prevent your program
     from running, runtime errors where your code has unexpected behavior, or logical errors
     where your code doesn't do what you intended.
 
@@ -95,6 +92,7 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 <hr>
 
 ### Object Oriented Programming
+
     OOP, or Object Oriented Programming, is one of the major approaches to the software
     development process. In OOP, objects and classes organize code to describe things
     and what they can do.
@@ -105,6 +103,7 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 <hr>
 
 ### Functional Programming
+
     Functional Programming is another popular approach to software development.
     In Functional Programming, code is organized into smaller, basic functions
     that can be combined to build complex programs.
@@ -112,9 +111,11 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
     In this course, you'll learn the core concepts of Functional Programming
     including pure functions, how to avoid mutations, and how to write cleaner
     code with methods like .map() and .filter().
+
 <hr>
 
 ### Intermediate Algorithm Scripting
+
     Now that you know the basics of algorithmic thinking, along with OOP
     and Functional Programming, test your skills with the Intermediate
     Algorithm Scripting challenges.
@@ -122,9 +123,9 @@ Object Oriented Programming (OOP) and Functional Programming (FP).
 <hr>
 
 ### JavaScript Algorithms and Data Structures Projects
+
     This is it — time to put your new JavaScript skills to work. These projects
     are similar to the algorithm scripting challenges you've done before – just
     much more difficult.
+
 <hr>
-
-
