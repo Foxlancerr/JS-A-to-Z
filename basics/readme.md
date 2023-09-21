@@ -1941,15 +1941,166 @@ console.log(testElse(4));
 
 <hr>
 
-# 70-
+# 70-Introducing Else If Statements
+
+    If you have multiple conditions that need to be addressed, you can chain if statements together with else if statements.
+
+```js
+if (num > 15) {
+  return "Bigger than 15";
+} else if (num < 5) {
+  return "Smaller than 5";
+} else {
+  return "Between 5 and 15";
+}
+```
+
+Convert the logic to use else if statements.
+
+```js
+function testElseIf(val) {
+  if (val > 10) {
+    return "Greater than 10";
+  } else if (val < 5) {
+    return "Smaller than 5";
+  } else {
+    return "Between 5 and 10";
+  }
+}
+
+console.log(testElseIf(7));
+console.log(testElseIf(3));
+console.log(testElseIf(34));
+```
 
 <hr>
 
-# 71-
+# 71-Logical Order in If Else Statements
+
+    Order is important in if, else if statements.
+
+    The function is executed from top to bottom so you will want to be careful of what statement comes first.
+
+Take these two functions as an example.
+
+1. Here's the first:
+
+```js
+function foo(x) {
+  if (x < 1) {
+    return "Less than one";
+  } else if (x < 2) {
+    return "Less than two";
+  } else {
+    return "Greater than or equal to two";
+  }
+}
+```
+
+2. And the second just switches the order of the statements:
+
+```js
+function bar(x) {
+  if (x < 2) {
+    return "Less than two";
+  } else if (x < 1) {
+    return "Less than one";
+  } else {
+    return "Greater than or equal to two";
+  }
+}
+```
+
+While these two functions look nearly identical if we pass a number to both we get different outputs.
+
+```js
+foo(0);
+bar(0);
+```
+
+foo(0) will return the string Less than one, and bar(0) will return the string Less than two.
+
+### Task
+
+Change the order of logic in the function so that it will return the correct statements in all cases.
+
+```js
+function orderMyLogic(val) {
+  if (val < 5) {
+    return "Less than 5";
+  } else if (val < 10) {
+    return "Less than 10";
+  } else {
+    return "Greater than or equal to 10";
+  }
+}
+
+console.log(orderMyLogic(7));
+console.log(orderMyLogic(3));
+console.log(orderMyLogic(70));
+```
 
 <hr>
 
-# 72-
+# 72-Chaining If Else Statements
+
+    if/else statements can be chained together for complex logic. Here is pseudocode of multiple chained if / else if statements:
+
+### Syntex
+
+```js
+if (condition1) {
+  statement1
+} else if (condition2) {
+  statement2
+} else if (condition3) {
+  statement3
+. . .
+} else {
+  statementN
+}
+```
+
+### Task
+
+1. Write chained if/else if statements to fulfill the following conditions:
+
+```js
+num < 5 - return Tiny
+num < 10 - return Small
+num < 15 - return Medium
+num < 20 - return Large
+num >= 20 - return Huge
+
+```
+
+### Solution
+
+```js
+function testSize(num) {
+  // Only change code below this line
+  if (num < 5) {
+    return "Tiny";
+  } else if (num < 10) {
+    return "Small";
+  } else if (num < 15) {
+    return "Medium";
+  } else if (num < 20) {
+    return "Large";
+  } else if (num >= 20) {
+    return "Huge";
+  } else {
+    return "Change Me";
+  }
+  // Only change code above this line
+}
+
+console.log(testSize(2));
+console.log(testSize(7));
+console.log(testSize(13));
+console.log(testSize(18));
+console.log(testSize(45));
+```
 
 <hr>
 
