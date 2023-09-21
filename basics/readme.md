@@ -2566,6 +2566,22 @@ abTest(2, 2);
 
 ### Hint
 
+Remember that undefined is a keyword, not a string.
+
+```js
+// Setup
+function abTest(a, b) {
+  // Only change code below this line
+
+  // Only change code above this line
+  return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
+}
+
+abTest(2, 2);
+```
+
+### Solution
+
 ```js
 // Setup
 function abTest(a, b) {
@@ -2580,47 +2596,563 @@ console.log(abTest(5, -7));
 console.log(abTest(3, 5));
 ```
 
-Remember that undefined is a keyword, not a string.
+<hr>
+
+# 80-Counting Cards
+
+    In the casino game Blackjack, a player can determine whether they have an advantage on the next hand over the house by keeping track of the relative number of high and low cards remaining in the deck. This is called Card Counting.
+
+    Having more high cards remaining in the deck favors the player. Each card is assigned a value according to the table below. When the count is positive, the player should bet high. When the count is zero or negative, the player should bet low.
+
+```js
+// Count Change	Cards
++1 =>	2, 3, 4, 5, 6
+0	 => 7, 8, 9
+-1 =>	10, 'J', 'Q', 'K', 'A'
+```
+
+You will write a card counting function. It will receive a card parameter, which can be a number or a string, and increment or decrement the global count variable according to the card's value (see table). The function will then return a string with the current count and the string Bet if the count is positive, or Hold if the count is zero or negative. The current count and the player's decision (Bet or Hold) should be separated by a single space.
+
+Example Outputs: -3 Hold or 5 Bet
+
+### Hint
+
+Do NOT reset count to 0 when value is 7, 8, or 9.
+Do NOT return an array.
+Do NOT include quotes (single or double) in the output.
+
+### Solution
+
+```js
+var count = 0;
+
+function cc(card) {
+  switch (card) {
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      count++;
+      break;
+    case 10:
+    case "J":
+    case "Q":
+    case "K":
+    case "A":
+      count--;
+      break;
+  }
+
+  var holdbet = "Hold";
+  if (count > 0) {
+    holdbet = "Bet";
+  }
+
+  return count + " " + holdbet;
+}
+
+cc(2);
+cc("/k");
+cc(7);
+cc("K");
+cc("A");
+console.log(cc(4));
+console.log(cc("K"));
+console.log(cc(10));
+console.log(cc(4));
+```
+
+### Code Explanation
+
+    Check the value of each card via a switch statement.
+    The variable count:
+    Increases by 1 if the card is a 2, 3, 4, 5, or 6.
+    Since 7, 8, and 9 aren’t worth anything, we ignore those cards in our switch statement.
+    Decreases by 1 if the card is a 10, ‘J’, ‘Q’, ‘K’, or ‘A’.
+    Check the value of count and return the appropriate response.
+
+### Example Run
+
+    cc(2); runs.
+    The switch statement hits case 2, jumps down and adds 1 to the variable count.
+    The switch statement then hits the break and cc(3); runs.
+    This cycle continues until the final call is made, cc('A');.
+    After the switch statement, the if statement checks count, which is now 0.
+    This then drops down to the else statement, which will return 0 Hold.
+
+### Note:
+
+As mentioned earlier, the switch statement could have also been an else if statement.
 
 <hr>
 
-# 80-
+# 81-Build JavaScript Objects
+
+You may have heard the term object before.
+
+    Objects are similar to arrays, except that instead of using indexes to access and modify their data, you access the data in objects through what are called properties.
+
+    Objects are useful for storing data in a structured way, and can represent real world objects, like a cat.
+
+Here's a sample cat object:
+
+```js
+const cat = {
+  name: "Whiskers",
+  legs: 4,
+  tails: 1,
+  enemies: ["Water", "Dogs"],
+};
+```
+
+In this example, all the properties are stored as strings, such as name, legs, and tails. However, you can also use numbers as properties. You can even omit the quotes for single-word string properties, as follows:
+
+```js
+const anotherObject = {
+  make: "Ford",
+  5: "five",
+  model: "focus",
+};
+```
+
+However, if your object has any non-string properties, JavaScript will automatically typecast them as strings.
+
+### Task
+
+1. Make an object that represents a dog called myDog which contains the properties name (a string), legs, tails and friends.
+
+2. You can set these object properties to whatever values you want, as long as name is a string, legs and tails are numbers, and friends is an array.
+
+### Solution
+
+```js
+const myDog = {
+  // Only change code below this line
+  name: "Yashmi",
+  legs: 4,
+  tails: 1,
+  friends: ["Human", "Dog"],
+
+  // Only change code above this line
+};
+```
 
 <hr>
 
-# 81-
+# 82-Accessing Object Properties with Dot Notation
+
+    There are two ways to access the properties of an object: dot notation (.) and bracket notation ([]), similar to an array.
+
+    Dot notation is what you use when you know the name of the property you're trying to access ahead of time.
+
+Here is a sample of using dot notation (.) to read an object's property:
+
+```js
+const myObj = {
+  prop1: "val1",
+  prop2: "val2",
+};
+
+const prop1val = myObj.prop1;
+const prop2val = myObj.prop2;
+```
+
+prop1val would have a value of the string val1, and prop2val would have a value of the string val2.
+
+### Task
+
+1. Read in the property values of testObj using dot notation. Set the variable hatValue equal to the object's property hat and set the variable shirtValue equal to the object's property shirt.
+
+### Solution
+
+```js
+// Setup
+const testObj = {
+  hat: "ballcap",
+  shirt: "jersey",
+  shoes: "cleats",
+};
+
+// Only change code below this line
+const hatValue = testObj.hat; // Change this line
+const shirtValue = testObj.shirt; // Change this line
+```
 
 <hr>
 
-# 82-
+# 83-Accessing Object Properties with Bracket Notation
+
+    The second way to access the properties of an object is bracket notation ([]). If the property of the object you are trying to access has a space in its name, you will need to use bracket notation.
+
+    However, you can still use bracket notation on object properties without spaces.
+
+Here is a sample of using bracket notation to read an object's property:
+
+```js
+const myObj = {
+  "Space Name": "Kirk",
+  "More Space": "Spock",
+  NoSpace: "USS Enterprise",
+};
+
+myObj["Space Name"];
+myObj["More Space"];
+myObj["NoSpace"];
+```
+
+    myObj["Space Name"] would be the string Kirk, myObj['More Space'] would be the string Spock, and myObj["NoSpace"] would be the string USS Enterprise.
+
+Note that property names with spaces in them must be in quotes (single or double).
+
+### Task
+
+1. Read the values of the properties an entree and the drink of testObj using bracket notation and assign them to entreeValue and drinkValue respectively.
+
+### Solution
+
+```js
+// Setup
+const testObj = {
+  "an entree": "hamburger",
+  "my side": "veggies",
+  "the drink": "water",
+};
+
+// Only change code below this line
+const entreeValue = testObj["an entree"]; // Change this line
+const drinkValue = testObj["the drink"]; // Change this line
+
+console.table([entreeValue, drinkValue]);
+```
 
 <hr>
 
-# 83-
+# 84-Accessing Object Properties with Variables
+
+    Another use of bracket notation on objects is to access a property which is stored as the value of a variable. This can be very useful for iterating through an object's properties or when accessing a lookup table.
+
+Here is an example of using a variable to access a property:
+
+```js
+const dogs = {
+  Fido: "Mutt",
+  Hunter: "Doberman",
+  Snoopie: "Beagle",
+};
+
+const myDog = "Hunter";
+const myBreed = dogs[myDog];
+console.log(myBreed);
+```
+
+The string Doberman would be displayed in the console.
+
+### Note
+
+that we do not use quotes around the variable name when using it to access the property because we are using the value of the variable, not the name.
+
+### Task
+
+1. Set the playerNumber variable to 16. Then, use the variable to look up the player's name and assign it to player.
+
+### Solution
+
+```js
+// Setup
+const testObj = {
+  12: "Namath",
+  16: "Montana",
+  19: "Unitas",
+};
+
+// Only change code below this line
+const playerNumber = 16; // Change this line
+const player = testObj[playerNumber]; // Change this line
+console.log(player);
+```
 
 <hr>
 
-# 84-
+# 85-Updating Object Properties
+
+    After you've created a JavaScript object, you can update its properties at any time just like you would update any other variable. You can use either dot or bracket notation to update.
+
+For example, let's look at ourDog:
+
+```js
+const ourDog = {
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
+};
+```
+
+    Since he's a particularly happy dog, let's change his name to the string Happy Camper. Here's how we update his object's name property: ourDog.name = "Happy Camper"; or ourDog["name"] = "Happy Camper"; Now when we evaluate ourDog.name, instead of getting Camper, we'll get his new name, Happy Camper.
+
+### Task
+
+1. Update the myDog object's name property. Let's change her name from Coder to Happy Coder. You can use either dot or bracket notation.
+
+### Solution
+
+```js
+// Setup
+const myDog = {
+  name: "Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+};
+
+console.log((myDog["name"] = "Happy Coder"));
+
+// Only change code below this line
+```
 
 <hr>
 
-# 85-
+# 86-Add New Properties to a JavaScript Object
+
+    You can add new properties to existing JavaScript objects the same way you would modify them.
+
+Here's how we would add a bark property to ourDog:
+
+```js
+ourDog.bark = "bow-wow";
+// or
+ourDog["bark"] = "bow-wow";
+```
+
+Now when we evaluate ourDog.bark, we'll get his bark, bow-wow.
+
+### Example:
+
+```js
+const ourDog = {
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
+};
+
+ourDog.bark = "bow-wow";
+```
+
+### Task
+
+Add a bark property to myDog and set it to a dog sound, such as "woof". You may use either dot or bracket notation.
+
+### Solution
+
+```js
+const myDog = {
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+};
+console.log(myDog);
+myDog.bark = "woof";
+console.log(myDog);
+```
 
 <hr>
 
-# 86-
+# 87-Delete Properties from a JavaScript Object
+
+    We can also delete properties from objects like this:
+
+delete ourDog.bark;
+Example:
+
+```js
+const ourDog = {
+  name: "Camper",
+  legs: 4,
+  tails: 1,
+  friends: ["everything!"],
+  bark: "bow-wow",
+};
+
+delete ourDog.bark;
+```
+
+After the last line shown above, ourDog looks like:
+
+```js
+{
+  "name": "Camper",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["everything!"]
+}
+```
+
+### Task
+
+Delete the tails property from myDog. You may use either dot or bracket notation.
+
+### Solution
+
+```js
+// Setup
+const myDog = {
+  name: "Happy Coder",
+  legs: 4,
+  tails: 1,
+  friends: ["freeCodeCamp Campers"],
+  bark: "woof",
+};
+
+// Only change code below this line
+console.log(myDog);
+delete myDog.tails;
+console.log(myDog);
+```
 
 <hr>
 
-# 87-
+# 88-Using Objects for Lookups
+
+    Objects can be thought of as a key/value storage, like a dictionary. If you have tabular data, you can use an object to lookup values rather than a switch statement or an if/else chain. This is most useful when you know that your input data is limited to a certain range.
+
+Here is an example of an article object:
+
+```js
+const article = {
+  title: "How to create objects in JavaScript",
+  link: "https://www.freecodecamp.org/news/a-complete-guide-to-creating-objects-in-javascript-b0e2450655e8/",
+  author: "Kaashan Hussain",
+  language: "JavaScript",
+  tags: "TECHNOLOGY",
+  createdAt: "NOVEMBER 28, 2018",
+};
+
+const articleAuthor = article["author"];
+const articleLink = article["link"];
+
+const value = "title";
+const valueLookup = article[value];
+```
+
+    articleAuthor is the string Kaashan Hussain, articleLink is the string https://www.freecodecamp.org/news/a-complete-guide-to-creating-objects-in-javascript-b0e2450655e8/, and valueLookup is the string How to create objects in JavaScript.
+
+### task
+
+Convert the switch statement into an object called lookup. Use it to look up val and assign the associated string to the result variable.
+
+```js
+// Setup
+function phoneticLookup(val) {
+  let result = "";
+
+  // Only change code below this line
+  switch (val) {
+    case "alpha":
+      result = "Adams";
+      break;
+    case "bravo":
+      result = "Boston";
+      break;
+    case "charlie":
+      result = "Chicago";
+      break;
+    case "delta":
+      result = "Denver";
+      break;
+    case "echo":
+      result = "Easy";
+      break;
+    case "foxtrot":
+      result = "Frank";
+  }
+
+  // Only change code above this line
+  return result;
+}
+
+phoneticLookup("charlie");
+```
+
+### Solution
+
+```js
+// Setup
+function phoneticLookup(val) {
+  let result = "";
+
+  const lookup = {
+    alpha: "Adams",
+    bravo: "Boston",
+    charlie: "Chicago",
+    delta: "Denver",
+    echo: "Easy",
+    foxtrot: "Frank",
+  };
+  result = lookup[val];
+
+  // Only change code above this line
+  return result;
+}
+
+console.log(phoneticLookup("charlie"));
+console.log(phoneticLookup("echo"));
+console.log(phoneticLookup("delta"));
+console.log(phoneticLookup("foxtrot"));
+console.log(phoneticLookup("alpha"));
+```
 
 <hr>
 
-# 88-
+# 89-Testing Objects for Properties
 
-<hr>
+    To check if a property on a given object exists or not, you can use the .hasOwnProperty() method. someObject.hasOwnProperty(someProperty) returns true or false depending on if the property is found on the object or not.
 
-# 89-
+### Example
+
+```js
+function checkForProperty(object, property) {
+  return object.hasOwnProperty(property);
+}
+
+checkForProperty({ top: "hat", bottom: "pants" }, "top"); // true
+checkForProperty({ top: "hat", bottom: "pants" }, "middle"); // false
+
+```
+
+The first checkForProperty function call returns true, while the second returns false.
+
+# Task
+
+1. Modify the function checkObj to test if the object passed to the function parameter obj contains the specific property passed to the function parameter checkProp. If the property passed to checkProp is found on obj, return that property's value. If not, return Not Found.
+
+```js
+function checkObj(obj, checkProp) {
+  // Only change code below this line
+  return "Change Me!";
+  // Only change code above this line
+}
+```
+
+### Solution
+
+````js
+function checkObj(obj, checkProp) {
+  // Only change code below this line
+  if(obj.hasOwnProperty(checkProp))
+    return obj[checkProp]
+  else{
+    return "Not Found"
+  }
+  // Only change code above this line
+}
+
+checkObj({gift: "pony", pet: "kitten", bed: "sleigh"}, "gift")
+checkObj({gift: "pony", bed: "sleigh"}, "house")
+```
+
 
 <hr>
 
@@ -2667,3 +3199,4 @@ Remember that undefined is a keyword, not a string.
 # 100-
 
 <hr>
+````
