@@ -1527,7 +1527,7 @@ function testStrict(val) {
   return "Not Equal";
 }
 
-testStrict(10);
+testStrict(7);
 ```
 
 <hr>
@@ -3119,7 +3119,6 @@ function checkForProperty(object, property) {
 
 checkForProperty({ top: "hat", bottom: "pants" }, "top"); // true
 checkForProperty({ top: "hat", bottom: "pants" }, "middle"); // false
-
 ```
 
 The first checkForProperty function call returns true, while the second returns false.
@@ -3138,50 +3137,381 @@ function checkObj(obj, checkProp) {
 
 ### Solution
 
-````js
+```js
 function checkObj(obj, checkProp) {
   // Only change code below this line
-  if(obj.hasOwnProperty(checkProp))
-    return obj[checkProp]
-  else{
-    return "Not Found"
+  if (obj.hasOwnProperty(checkProp)) return obj[checkProp];
+  else {
+    return "Not Found";
   }
   // Only change code above this line
 }
 
-checkObj({gift: "pony", pet: "kitten", bed: "sleigh"}, "gift")
-checkObj({gift: "pony", bed: "sleigh"}, "house")
+checkObj({ gift: "pony", pet: "kitten", bed: "sleigh" }, "gift");
+checkObj({ gift: "pony", bed: "sleigh" }, "house");
 ```
 
+<hr>
+
+# 90-Manipulating Complex Objects
+
+    Sometimes you may want to store data in a flexible Data Structure. A JavaScript object is one way to handle flexible data. They allow for arbitrary combinations of strings, numbers, booleans, arrays, functions, and objects.
+
+Here's an example of a complex data structure:
+
+```js
+const ourMusic = [
+  {
+    artist: "Daft Punk",
+    title: "Homework",
+    release_year: 1997,
+    formats: ["CD", "Cassette", "LP"],
+    gold: true,
+  },
+];
+```
+
+    This is an array which contains one object inside.
+    The object has various pieces of metadata about an album.
+    It also has a nested formats array. If you want to add
+    more album records, you can do this by adding records to
+    the top level array. Objects hold data in a property,
+    which has a key-value format. In the example above,
+    "artist": "Daft Punk" is a property that has a key of
+    artist and a value of Daft Punk.
+
+### Note:
+
+You will need to place a comma after every object in the array, unless it is the last object in the array.
+
+### Task
+
+Add a new album to the myMusic array. Add artist and title strings, release_year number, and a formats array of strings.
+
+### Solution
+
+```js
+const myMusic = [
+  {
+    artist: "Billy Joel",
+    title: "Piano Man",
+    release_year: 1973,
+    formats: ["CD", "8T", "LP"],
+    gold: true,
+  },
+  {
+    artist: "john Dave",
+    title: "Laila",
+    release_year: 2003,
+    formats: ["CD", "DvT", "LP"],
+    gold: false,
+  },
+];
+```
 
 <hr>
 
-# 90-
+# 91-Accessing Nested Objects
+
+    The sub-properties of objects can be accessed by chaining together the dot or bracket notation.
+
+Here is a nested object:
+
+```js
+const ourStorage = {
+  desk: {
+    drawer: "stapler",
+  },
+  cabinet: {
+    "top drawer": {
+      folder1: "a file",
+      folder2: "secrets",
+    },
+    "bottom drawer": "soda",
+  },
+};
+
+ourStorage.cabinet["top drawer"].folder2;
+ourStorage.desk.drawer;
+```
+
+ourStorage.cabinet["top drawer"].folder2 would be the string secrets, and ourStorage.desk.drawer would be the string stapler.
+
+### Task
+
+Access the myStorage object and assign the contents of the glove box property to the gloveBoxContents variable. Use dot notation for all properties where possible, otherwise use bracket notation.
+
+### Solution
+
+```js
+const myStorage = {
+  car: {
+    inside: {
+      "glove box": "maps",
+      "passenger seat": "crumbs",
+    },
+    outside: {
+      trunk: "jack",
+    },
+  },
+};
+
+const gloveBoxContents = myStorage.car.inside["glove box"];
+console.log(gloveBoxContents);
+```
 
 <hr>
 
-# 91-
+# 92-Accessing Nested Arrays
+
+    As we have seen in earlier examples, objects can contain both nested objects and nested arrays. Similar to accessing nested objects, array bracket notation can be chained to access nested arrays.
+
+Here is an example of how to access a nested array:
+
+```js
+const ourPets = [
+  {
+    animalType: "cat",
+    names: ["Meowzer", "Fluffy", "Kit-Cat"],
+  },
+  {
+    animalType: "dog",
+    names: ["Spot", "Bowser", "Frankie"],
+  },
+];
+
+ourPets[0].names[1];
+ourPets[1].names[0];
+```
+
+ourPets[0].names[1] would be the string Fluffy, and ourPets[1].names[0] would be the string Spot.
+
+### task
+
+Using dot and bracket notation, set the variable secondTree to the second item in the trees list from the myPlants object.
+
+### Solution
+
+```js
+const myPlants = [
+  {
+    type: "flowers",
+    list: ["rose", "tulip", "dandelion"],
+  },
+  {
+    type: "trees",
+    list: ["fir", "pine", "birch"],
+  },
+];
+
+const secondTree = myPlants[1].list[1];
+console.log(secondTree);
+```
 
 <hr>
 
-# 92-
+# 93-Record Collection
+
+    You are creating a function that aids in the maintenance of a musical album collection.
+    The collection is organized as an object that contains multiple albums which are also objects.
+    Each album is represented in the collection with a unique id as the property name.
+    Within each album object, there are various properties describing information about the album.
+    Not all albums have complete information.
+
+The updateRecords function takes 4 arguments represented by the following function parameters:
+
+1. records - an object containing several individual albums
+2. id - a number representing a specific album in the records object
+3. prop - a string representing the name of the album’s property to update
+4. value - a string containing the information used to update the album’s property
+
+Complete the function using the rules below to modify the object passed to the function.
+
+- Your function must always return the entire records object.
+- If value is an empty string, delete the given prop property from the album.
+- If prop isn't tracks and value isn't an empty string, assign the value to that album's prop.
+- If prop is tracks and value isn't an empty string, you need to update the album's tracks array. First, if the album does not have a tracks property, assign it an empty array. Then add the value as the last item in the album's tracks array.
+
+### Note:
+
+A copy of the recordCollection object is used for the tests. You should not directly modify the recordCollection object.
+
+### Solution
+
+```js
+// Setup
+const recordCollection = {
+  2548: {
+    albumTitle: "Slippery When Wet",
+    artist: "Bon Jovi",
+    tracks: ["Let It Rock", "You Give Love a Bad Name"],
+  },
+  2468: {
+    albumTitle: "1999",
+    artist: "Prince",
+    tracks: ["1999", "Little Red Corvette"],
+  },
+  1245: {
+    artist: "Robert Palmer",
+    tracks: [],
+  },
+  5439: {
+    albumTitle: "ABBA Gold",
+  },
+};
+
+// Only change code below this line
+
+function updateRecords(records, id, prop, value) {
+  if (value === "") {
+    delete records[id][prop];
+  } else if (prop !== "tracks" && value !== "") {
+    records[id][prop] = value;
+  } else if (prop === "tracks" && value !== "") {
+    if (records[id].hasOwnProperty("tracks") === false) {
+      records[id][prop] = [];
+    }
+    records[id][prop].push(value);
+  }
+  return records;
+}
+
+updateRecords(recordCollection, 5439, "artist", "ABBA");
+updateRecords(recordCollection, 5439, "tracks", "Take a Chance on Me");
+updateRecords(recordCollection, 2548, "artist", "");
+updateRecords(recordCollection, 1245, "tracks", "Addicted to Love");
+updateRecords(recordCollection, 2468, "tracks", "Free");
+updateRecords(recordCollection, 1245, "albumTitle", "Riptide");
+updateRecords(recordCollection, 2548, "tracks", "");
+```
+
+### Code Explanation
+
+This version of the code explicitly handles every possible case with separate if clauses.
+
+- First it checks if the value is an empty string. If it is, then the prop is deleted.
+- Then, if prop is not "tracks" and the value is not an empty string. The prop is set to the value.
+- If that check doesn’t pass, it next checks if prop is equal to tracks, the value is not an empty string, and the record does not have a tracks array. The "tracks" array is initialized with the only contents being value.
+- It next checks if prop is equal to tracks, the value is not an empty string. The "tracks" array must exist because the case above was not true. The value is pushed onto the end of the "tracks" array.
+- Lastly, the entire records object is returned.
+<hr>
+
+# 94-Iterate with JavaScript While Loops
+
+You can run the same code multiple times by using a loop.
+
+    The first type of loop we will learn is called a while loop because it runs while a specified condition is true and stops once that condition is no longer true.
+
+```js
+const ourArray = [];
+let i = 0;
+
+while (i < 5) {
+  ourArray.push(i);
+  i++;
+}
+```
+
+In the code example above, the while loop will execute 5 times and append the numbers 0 through 4 to ourArray.
+
+Let's try getting a while loop to work by pushing values to an array.
+
+### Task
+
+Add the numbers 5 through 0 (inclusive) in descending order to myArray using a while loop.
+
+```js
+// Setup
+const myArray = [];
+let i = 5;
+
+while (i >= 0) {
+  myArray.push(i);
+  i--;
+}
+console.log(myArray);
+```
 
 <hr>
 
-# 93-
+# 95-Iterate with JavaScript For Loops
+
+You can run the same code multiple times by using a loop.
+
+    The most common type of JavaScript loop is called a for loop because it runs for a specific number of times.
+
+For loops are declared with three optional expressions separated by semicolons:
+
+<code>for (a; b; c)</code>
+
+- where a is the initialization statement,
+- b is the condition statement,
+- and c is the final expression.
+
+      The initialization statement is executed one time only before the loop starts. It is typically used to define and setup your loop variable.
+
+      The condition statement is evaluated at the beginning of every loop iteration and will continue as long as it evaluates to true. When the condition is false at the start of the iteration, the loop will stop executing. This means if the condition starts as false, your loop will never execute.
+
+      The final expression is executed at the end of each loop iteration, prior to the next condition check and is usually used to increment or decrement your loop counter.
+
+In the following example we initialize with i = 0 and iterate while our condition i < 5 is true. We'll increment i by 1 in each loop iteration with i++ as our final expression.
+
+```js
+const ourArray = [];
+
+for (let i = 0; i < 5; i++) {
+  ourArray.push(i);
+}
+// ourArray will now have the value [0, 1, 2, 3, 4].
+```
+
+### Task
+
+Use a for loop to push the values 1 through 5 onto myArray.
+
+```js
+// Setup
+const myArray = [];
+for (let i = 1; i <= 5; i++) {
+  console.log(i);
+  myArray.push(i);
+}
+console.log(myArray);
+// Only change code below this line
+```
 
 <hr>
 
-# 94-
+# 96-Iterate Odd Numbers With a For Loop
 
-<hr>
+    For loops don't have to iterate one at a time. By changing our final-expression, we can count by even numbers.
 
-# 95-
+We'll start at i = 0 and loop while i < 10. We'll increment i by 2 each loop with i += 2.
 
-<hr>
+```js
+// Print Even number like [0,2,4,6,8....]
+const ourArray = [];
 
-# 96-
+for (let i = 0; i < 10; i += 2) {
+  ourArray.push(i);
+}
+```
 
+ourArray will now contain [0, 2, 4, 6, 8]. Let's change our initialization so we can count by odd numbers.
+
+Push the odd numbers from 1 through 9 to myArray using a for loop.
+
+```js
+// Print Odd number like [1,3,5,7,9....]
+const myArray = [];
+
+// Only change code below this line
+for(let i = 1; i<10; i+=2){
+  console.log(i)
+  myArray.push(i)
+}
+console.log(myArray)
+```
 <hr>
 
 # 97-
