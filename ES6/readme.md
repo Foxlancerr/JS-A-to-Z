@@ -756,136 +756,501 @@ const stats = {
   median: 34.54,
   mode: 23.87,
   min: -0.75,
-  average: 35.85
+  average: 35.85,
 };
 
 // Only change code below this line
-const half = ({max, min}) => (max + min) / 2.0; 
+const half = ({ max, min }) => (max + min) / 2.0;
 // Only change code above this line
-console.log(half(stats))
-```
-
-
-<hr>
-
-# 15-
-### Task
-
-```js
-
-```
-### Solution
-
-```js
-
+console.log(half(stats));
 ```
 
 <hr>
 
-# 16-
-### Task
+# 15-Create Strings using Template Literals
+
+    A new feature of ES6 is the template literal. This is a special type of string that makes creating complex strings easier.
+
+Template literals allow you to create multi-line strings and to use string interpolation features to create strings.
+
+Consider the code below:
 
 ```js
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56,
+};
 
+const greeting = `Hello, my name is ${person.name}! I am ${person.age} years old.`;
+
+console.log(greeting);
 ```
+
+The console will display the strings Hello, my name is Zodiac Hasbro! and I am 56 years old..
+
+    A lot of things happened there. Firstly, the example uses backticks (`), not quotes (' or "), to wrap the string. Secondly, notice that the string is multi-line, both in the code and the output. This saves inserting \n within strings. The ${variable} syntax used above is a placeholder. Basically, you won't have to use concatenation with the + operator anymore. To add variables to strings, you just drop the variable in a template string and wrap it with ${ and }. Similarly, you can include other expressions in your string literal, for example ${a + b}. This new way of creating strings gives you more flexibility to create robust strings.
+
+Use template literal syntax with backticks to create an array of list element (li) strings. Each list element's text should be one of the array elements from the failure property on the result object and have a class attribute with the value text-warning. The makeList function should return the array of list item strings.
+
+### Task
+
+Use an iterator method (any kind of loop) to get the desired output (shown below).
+
+```js
+[
+  '<li class="text-warning">no-var</li>',
+  '<li class="text-warning">var-on-top</li>',
+  '<li class="text-warning">linebreak</li>',
+];
+```
+
+```js
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"],
+};
+function makeList(arr) {
+  // Only change code below this line
+  const failureItems = [];
+  // Only change code above this line
+
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);
+```
+
 ### Solution
 
 ```js
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"],
+};
+function makeList(arr) {
+  // Only change code below this line
+  return arr.map((el) => `<li class="text-warning">${el}</li>`);
+  // Only change code above this line
+}
 
+const failuresList = makeList(result.failure);
+console.log(failuresList);
 ```
 
 <hr>
 
-# 17-
-### Task
+# 16-Write Concise Object Literal Declarations Using Object Property Shorthand
+
+ES6 adds some nice support for easily defining object literals.
+
+Consider the following code:
 
 ```js
-
+const getMousePosition = (x, y) => ({
+  x: x,
+  y: y,
+});
 ```
+
+getMousePosition is a simple function that returns an object containing two properties.ES6 provides the syntactic sugar to eliminate the redundancy of having to write x: x. You can simply write x once, and it will be converted tox: x (or something equivalent) under the hood. Here is the same function from above rewritten to use this new syntax:
+
+```js
+const getMousePosition = (x, y) => ({ x, y });
+```
+
+### Task
+
+Use object property shorthand with object literals to create and return an object with name, age and gender properties.
+
+```js
+const createPerson = (name, age, gender) => {
+  // Only change code below this line
+  return {
+    name: name,
+    age: age,
+    gender: gender,
+  };
+  // Only change code above this line
+};
+```
+
 ### Solution
 
 ```js
-
+const createPerson = (name, age, gender) => {
+  // Only change code below this line
+  return {
+    name,
+    age,
+    gender,
+  };
+  // Only change code above this line
+};
 ```
 
 <hr>
 
-# 18-
-### Task
+# 17-Write Concise Declarative Functions with ES6
+
+When defining functions within objects in ES5, we have to use the keyword function as follows:
 
 ```js
-
+const person = {
+  name: "Taylor",
+  sayHello: function () {
+    return `Hello! My name is ${this.name}.`;
+  },
+};
 ```
+
+With ES6, you can remove the function keyword and colon altogether when defining functions in objects. Here's an example of this syntax:
+
+```js
+const person = {
+  name: "Taylor",
+  sayHello() {
+    return `Hello! My name is ${this.name}.`;
+  },
+};
+```
+
+### Task
+
+Refactor the function setGear inside the object bicycle to use the shorthand syntax described above.
+
+```js
+// Only change code below this line
+const bicycle = {
+  gear: 2,
+  setGear: function (newGear) {
+    this.gear = newGear;
+  },
+};
+// Only change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear);
+```
+
 ### Solution
 
 ```js
-
+// Only change code below this line
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    this.gear = newGear;
+  },
+};
+// Only change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear);
 ```
 
 <hr>
 
-# 19-
-### Task
+# 18-Use class Syntax to Define a Constructor Function
+
+    ES6 provides a new syntax to create objects, using the class keyword.
+
+In ES5, an object can be created by defining a constructor function and using the new keyword to instantiate the object.
+
+In ES6, a class declaration has a constructor method that is invoked with the new keyword. If the constructor method is not explicitly defined, then it is implicitly defined with no arguments.
 
 ```js
+// Explicit constructor
+class SpaceShuttle {
+  constructor(targetPlanet) {
+    this.targetPlanet = targetPlanet;
+  }
+  takeOff() {
+    console.log("To " + this.targetPlanet + "!");
+  }
+}
 
+// Implicit constructor
+class Rocket {
+  launch() {
+    console.log("To the moon!");
+  }
+}
+
+const zeus = new SpaceShuttle("Jupiter");
+// prints To Jupiter! in console
+zeus.takeOff();
+
+const atlas = new Rocket();
+// prints To the moon! in console
+atlas.launch();
 ```
+
+It should be noted that the class keyword declares a new function, to which a constructor is added. This constructor is invoked when new is called to create a new object.
+
+### Note:
+
+UpperCamelCase should be used by convention for ES6 class names, as in SpaceShuttle used above.
+
+    The constructor method is a special method for creating and initializing an object created with a class. You will learn more about it in the Object Oriented Programming section of the JavaScript Algorithms And Data Structures Certification.
+
+### Task
+
+Use the class keyword and write a constructor to create the Vegetable class.
+
+The Vegetable class allows you to create a vegetable object with a property name that gets passed to the constructor.
+
+```js
+// Only change code below this line
+
+// Only change code above this line
+
+const carrot = new Vegetable("carrot");
+console.log(carrot.name); // Should display 'carrot'
+```
+
 ### Solution
 
 ```js
+// Only change code below this line
+class Vegetable {
+  constructor(name) {
+    this.name = name;
+  }
+}
 
+// Only change code above this line
+
+const carrot = new Vegetable("carrot");
+console.log(carrot.name); // Should display 'carrot'
 ```
 
 <hr>
 
-# 20-
-### Task
+# 19-Use getters and setters to Control Access to an Object
+
+    You can obtain values from an object and set the value of a property within an object.
+
+These are classically called getters and setters.
+
+- Getter functions are meant to simply return (get) the value of an object's private variable to the user without the user directly accessing the private variable.
+
+- Setter functions are meant to modify (set) the value of an object's private variable based on the value passed into the setter function. This change could involve calculations, or even overwriting the previous value completely.
 
 ```js
-
+class Book {
+  constructor(author) {
+    this._author = author;
+  }
+  // getter
+  get writer() {
+    return this._author;
+  }
+  // setter
+  set writer(updatedAuthor) {
+    this._author = updatedAuthor;
+  }
+}
+const novel = new Book("anonymous");
+console.log(novel.writer);
+novel.writer = "newAuthor";
+console.log(novel.writer);
 ```
+
+The console would display the strings anonymous and newAuthor.
+
+Notice the syntax used to invoke the getter and setter. They do not even look like functions. Getters and setters are important because they hide internal implementation details.
+
+### Note:
+
+- It is convention to precede the name of a private variable with an underscore (\_). However, the practice itself does not make a variable private.
+
+### Task
+
+- Use the class keyword to create a Thermostat class. The constructor accepts a Fahrenheit temperature.
+
+- In the class, create a getter to obtain the temperature in Celsius and a setter to set the temperature in Celsius.
+
+- Remember that C = 5/9 _ (F - 32) and F = C _ 9.0 / 5 + 32, where F is the value of temperature in Fahrenheit, and C is the value of the same temperature in Celsius.
+
+note
+
+- When you implement this, you will track the temperature inside the class in one scale, either Fahrenheit or Celsius.
+
+- This is the power of a getter and a setter. You are creating an API for another user, who can get the correct result regardless of which one you track.
+
+- In other words, you are abstracting implementation details from the user.
+
+```js
+// Only change code below this line
+
+// Only change code above this line
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in Celsius
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in Celsius
+```
+
 ### Solution
 
 ```js
+class Thermostat {
+  constructor(fahrenheit) {
+    this._fahrenheit = fahrenheit;
+  }
+  get temperature() {
+    return (5 / 9) * (this._fahrenheit - 32);
+  }
 
+  set temperature(celsius) {
+    return (this._fahrenheit = (celsius * 9.0) / 5 + 32);
+  }
+}
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+console.log(thermos.temperature + " Fahrenhait");
+thermos.temperature = 56; // 24.44 in Celsius
+console.log(thermos.temperature + " Celsius");
 ```
 
 <hr>
 
-# 21-
+# 20-Create a Module Script
+
+    JavaScript started with a small role to play on an otherwise mostly HTML web.
+    Today, it’s huge, and some websites are built almost entirely with JavaScript.
+    In order to make JavaScript more modular, clean, and maintainable;
+    ES6 introduced a way to easily share code among JavaScript files.
+    This involves exporting parts of a file for use in one or more other files,
+    and importing the parts you need, where you need them. In order to take advantage of this functionality,
+    you need to create a script in your HTML document with a type of module. Here’s an example:
+
+```html
+<script type="module" src="filename.js"></script>
+```
+
+A script that uses this module type can now use the import and export features you will learn about in the upcoming challenges.
+
 ### Task
 
-```js
+Add a script to the HTML document of type module and give it the source file of index.js
 
-```
 ### Solution
 
 ```js
-
+<html>
+<body>
+  <!-- only the script tag is added -->
+  <script type="module" src="index,js"></script>
+</body>
+</html>
 ```
 
 <hr>
 
-# 22-
-### Task
+# 21-Use export to Share a Code Block
+
+Imagine a file called math_functions.js that contains several functions related to mathematical operations. One of them is stored in a variable, add, that takes in two numbers and returns their sum. You want to use this function in several different JavaScript files. In order to share it with these other files, you first need to export it.
 
 ```js
-
+export const add = (x, y) => {
+  return x + y;
+};
 ```
+
+The above is a common way to export a single function, but you can achieve the same thing like this:
+
+```js
+const add = (x, y) => {
+  return x + y;
+};
+
+export { add };
+```
+
+When you export a variable or function, you can import it in another file and use it without having to rewrite the code. You can export multiple things by repeating the first example for each thing you want to export, or by placing them all in the export statement of the second example, like this:
+
+```js
+export { add, subtract };
+```
+
+### Task
+
+There are two string-related functions in the editor. Export both of them using the method of your choice.
+
+```js
+const uppercaseString = (string) => {
+  return string.toUpperCase();
+};
+
+const lowercaseString = (string) => {
+  return string.toLowerCase();
+};
+```
+
 ### Solution
 
 ```js
+const uppercaseString = (string) => {
+  return string.toUpperCase();
+};
 
+const lowercaseString = (string) => {
+  return string.toLowerCase();
+};
+
+export { uppercaseString, lowercaseString };
+```
+
+<hr>
+
+# 22-Reuse JavaScript Code Using import
+
+import allows you to choose which parts of a file or module to load. In the previous lesson, the examples exported add from the math_functions.js file. Here's how you can import it to use in another file:
+
+```js
+import { add } from "./math_functions.js";
+```
+
+Here, import will find add in math_functions.js, import just that function for you to use, and ignore the rest. The ./ tells the import to look for the math_functions.js file in the same folder as the current file. The relative file path (./) and file extension (.js) are required when using import in this way.
+
+You can import more than one item from the file by adding them in the import statement like this:
+
+```js
+import { add, subtract } from "./math_functions.js";
+```
+
+### Task
+
+1. Add the appropriate import statement that will allow the current file to use the uppercaseString and lowercaseString functions you exported in the previous lesson. These functions are in a file called string_functions.js, which is in the same directory as the current file.
+
+```js
+// import the files
+
+uppercaseString("hello");
+lowercaseString("WORLD!");
+```
+
+### Solution
+
+```js
+// Here is the import statement is added
+import { uppercaseString, lowercaseString } from "./string_functions.js";
+
+uppercaseString("hello");
+lowercaseString("WORLD!");
 ```
 
 <hr>
 
 # 23-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -895,11 +1260,13 @@ console.log(half(stats))
 <hr>
 
 # 24-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -909,11 +1276,13 @@ console.log(half(stats))
 <hr>
 
 # 25-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -923,11 +1292,13 @@ console.log(half(stats))
 <hr>
 
 # 26-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -937,11 +1308,13 @@ console.log(half(stats))
 <hr>
 
 # 27-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -951,11 +1324,13 @@ console.log(half(stats))
 <hr>
 
 # 28-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -965,11 +1340,13 @@ console.log(half(stats))
 <hr>
 
 # 29-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -979,11 +1356,13 @@ console.log(half(stats))
 <hr>
 
 # 30-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -993,11 +1372,13 @@ console.log(half(stats))
 <hr>
 
 # 15-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
@@ -1007,11 +1388,13 @@ console.log(half(stats))
 <hr>
 
 # 15-
+
 ### Task
 
 ```js
 
 ```
+
 ### Solution
 
 ```js
