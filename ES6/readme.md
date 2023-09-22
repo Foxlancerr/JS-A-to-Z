@@ -1243,160 +1243,304 @@ lowercaseString("WORLD!");
 
 <hr>
 
-# 23-
+# 23-Use \* to Import Everything from a File
+
+Suppose you have a file and you wish to import all of its contents into the current file. This can be done with the import \* as syntax. Here's an example where the contents of a file named math_functions.js are imported into a file in the same directory:
+
+```js
+import * as myMathModule from "./math_functions.js";
+```
+
+The above import statement will create an object called myMathModule. This is just a variable name, you can name it anything. The object will contain all of the exports from math_functions.js in it, so you can access the functions like you would any other object property. Here's how you can use the add and subtract functions that were imported:
+
+```js
+myMathModule.add(2, 3);
+myMathModule.subtract(5, 3);
+```
 
 ### Task
 
-```js
+The code in this file requires the contents of the file: string_functions.js, that is in the same directory as the current file. Use the <code>import \* </code>as syntax to import everything from the file into an object called stringFunctions.
 
+```js
+// Only change code above this line
+
+stringFunctions.uppercaseString("hello");
+stringFunctions.lowercaseString("WORLD!");
 ```
 
 ### Solution
 
 ```js
+import * as stringFunctions from "./string_functions.js";
+// Only change code above this line
 
+stringFunctions.uppercaseString("hello");
+stringFunctions.lowercaseString("WORLD!");
 ```
 
 <hr>
 
-# 24-
+# 24-Create an Export Fallback with export default
+
+In the export lesson, you learned about the syntax referred to as a named export. This allowed you to make multiple functions and variables available for use in other files.
+
+    There is another export syntax you need to know, known as export default.
+    Usually you will use this syntax if only one value is being exported from a file.
+    It is also used to create a fallback value for a file or module.
+
+Below are examples using export default:
+
+```js
+export default function add(x, y) {
+  return x + y;
+}
+
+export default function(x, y) {
+  return x + y;
+}
+```
+
+The first is a named function, and the second is an anonymous function.
+
+Since export default is used to declare a fallback value for a module or file, you can only have one value be a default export in each module or file. Additionally, you cannot use export default with var, let, or const
 
 ### Task
 
-```js
+The following function should be the fallback value for the module. Please add the necessary code to do so.
 
+```js
+// use the export default to export the subtract function
+function subtract(x, y) {
+  return x - y;
+}
 ```
 
 ### Solution
 
 ```js
-
+export default function subtract(x, y) {
+  return x - y;
+}
 ```
 
 <hr>
 
-# 25-
+# 25-Import a Default Export
+
+In the last challenge, you learned about export default and its uses.
+
+    To import a default export, you need to use a different import syntax. In the following example, add is the default export of the math_functions.js file. Here is how to import it:
+
+```js
+import add from "./math_functions.js";
+```
+
+The syntax differs in one key place. The imported value, add, is not surrounded by curly braces <code>({})</code>. add here is simply a variable name for whatever the default export of the math_functions.js file is. You can use any name here when importing a default.
 
 ### Task
 
-```js
+In the following code, import the default export from the math_functions.js file, found in the same directory as this file. Give the import the name subtract.
 
+```js
+// import default is missing
+subtract(7, 4);
 ```
 
 ### Solution
 
 ```js
+import subtract from "./math_functions.js";
 
+subtract(7, 4);
 ```
 
 <hr>
 
-# 26-
+# 26-Create a JavaScript Promise
+
+    A promise in JavaScript is exactly what it sounds like - you use it
+    to make a promise to do something, usually asynchronously.
+    When the task completes, you either fulfill your promise or fail to do so.
+    Promise is a constructor function, so you need to use the new keyword to create one.
+    It takes a function, as its argument, with two parameters - resolve and reject.
+    These are methods used to determine the outcome of the promise. The syntax looks like this:
+
+```js
+const myPromise = new Promise((resolve, reject) => {});
+```
 
 ### Task
 
-```js
-
-```
+Create a new promise called makeServerRequest. Pass in a function with resolve and reject parameters to the constructor.
 
 ### Solution
 
 ```js
-
+const makeServerRequest = new Promise((resolve, reject) => {});
 ```
 
 <hr>
 
-# 27-
+# 27-Complete a Promise with resolve and reject
+
+    A promise has three states: pending, fulfilled, and rejected.
+    The promise you created in the last challenge is forever stuck in the pending state
+    because you did not add a way to complete the promise.
+    The resolve and reject parameters given to the promise argument are used to do this.
+    resolve is used when you want your promise to succeed,
+    and reject is used when you want it to fail.
+    These are methods that take an argument, as seen below.
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  if(condition here) {
+    resolve("Promise was fulfilled");
+  } else {
+    reject("Promise was rejected");
+  }
+});
+```
+
+The example above uses strings for the argument of these functions, but it can really be anything. Often, it might be an object, that you would use data from, to put on your website or elsewhere.
 
 ### Task
 
-```js
+Make the promise handle success and failure. If responseFromServer is true, call the resolve method to successfully complete the promise. Pass resolve a string with the value We got the data. If responseFromServer is false, use the reject method instead and pass it the string: Data not received.
 
+```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer represents a response from a server
+  let responseFromServer;
+
+  if (responseFromServer) {
+    // Change this line
+  } else {
+    // Change this line
+  }
+});
 ```
 
 ### Solution
 
 ```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer represents a response from a server
+  let responseFromServer;
 
+  if (responseFromServer) {
+    resolve("We got the data");
+  } else {
+    reject("Data not received");
+  }
+});
 ```
 
 <hr>
 
-# 28-
+# 28-Handle a Fulfilled Promise with then
+
+Promises are most useful when you have a process that takes an unknown amount of time in your code (i.e. something asynchronous), often a server request. When you make a server request it takes some amount of time, and after it completes you usually want to do something with the response from the server.
+
+    This can be achieved by using the then method. The then method is executed immediately after your promise is fulfilled with resolve. Here’s an example:
+
+```js
+myPromise.then((result) => {});
+```
+
+result comes from the argument given to the resolve method.
 
 ### Task
 
-```js
+Add the then method to your promise. Use result as the parameter of its callback function and log result to the console.
 
+```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to true to represent a successful response from a server
+  let responseFromServer = true;
+
+  if (responseFromServer) {
+    resolve("We got the data");
+  } else {
+    reject("Data not received");
+  }
+});
 ```
 
 ### Solution
 
 ```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to true to represent a successful response from a server
+  let responseFromServer = true;
 
+  if (responseFromServer) {
+    resolve("We got the data");
+  } else {
+    reject("Data not received");
+  }
+});
+
+makeServerRequest
+  .then((result) => console.log(result))
+  .catch((err) => console.log(err));
 ```
 
 <hr>
 
-# 29-
+# 29-Handle a Rejected Promise with catch
+
+catch is the method used when your promise has been rejected. It is executed immediately after a promise's reject method is called. Here’s the syntax:
+
+```js
+myPromise.catch((error) => {});
+```
+
+error is the argument passed in to the reject method.
 
 ### Task
 
-```js
+Add the catch method to your promise. Use error as the parameter of its callback function and log error to the console.
 
+```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to false to represent an unsuccessful response from a server
+  let responseFromServer = false;
+
+  if (responseFromServer) {
+    resolve("We got the data");
+  } else {
+    reject("Data not received");
+  }
+});
+
+makeServerRequest.then((result) => {
+  console.log(result);
+});
 ```
 
 ### Solution
 
 ```js
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer is set to false to represent an unsuccessful response from a server
+  let responseFromServer = false;
 
+  if (responseFromServer) {
+    resolve("We got the data");
+  } else {
+    reject("Data not received");
+  }
+});
+
+makeServerRequest
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => console.log(error));
 ```
 
 <hr>
 
-# 30-
 
-### Task
-
-```js
-
-```
-
-### Solution
-
-```js
-
-```
-
-<hr>
-
-# 15-
-
-### Task
-
-```js
-
-```
-
-### Solution
-
-```js
-
-```
-
-<hr>
-
-# 15-
-
-### Task
-
-```js
-
-```
-
-### Solution
-
-```js
-
-```
+# THE ES6 CHAPTER IS COMPLETED
