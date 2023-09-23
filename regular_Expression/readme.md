@@ -378,144 +378,317 @@ let alphabetRegex = /[a-z]/gi; // Change this line
 let result = quoteSample.match(alphabetRegex); // Change this line
 ```
 
-# 1-
+# 9-Match Numbers and Letters of the Alphabet
+
+    Using the hyphen (-) to match a range of characters is not limited to letters.
+    It also works to match a range of numbers.
+
+For example, /[0-5]/ matches any number between 0 and 5, including the 0 and 5.
+
+Also, it is possible to combine a range of letters and numbers in a single character set.
+
+```js
+let jennyStr = "Jenny8675309";
+let myRegex = /[a-z0-9]/gi;
+jennyStr.match(myRegex);
+```
 
 ### Task
 
-```js
+Create a single regex that matches a range of letters between h and s, and a range of numbers between 2 and 6. Remember to include the appropriate flags in the regex.
 
+```js
+let quoteSample = "Blueberry 3.141592653s are delicious.";
+let myRegex = /change/; // Change this line
+let result = myRegex; // Change this line
 ```
 
 ### Solution
 
 ```js
-
+let quoteSample = "Blueberry 3.141592653s are delicious.";
+let myRegex = /[h-s2-6]/gi; // Change this line
+let result = quoteSample.match(myRegex); // Change this line
 ```
 
-# 1-
+# 10-Match Single Characters Not Specified
+
+So far, you have created a set of characters that you want to match,
+
+    but you could also create a set of characters that you do not want to match.
+    These types of character sets are called negated character sets.
+
+    To create a negated character set, you place a caret character (^) after the opening bracket and before the characters you do not want to match.
+
+For example,
+
+    /[^aeiou]/gi
+
+    matches all characters that are not a vowel. Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
 
 ### Task
 
-```js
-
-```
+Create a single regex that matches all characters that are not a number or a vowel. Remember to include the appropriate flags in the regex.
 
 ### Solution
 
 ```js
-
+let quoteSample = "3 blind mice.";
+let myRegex = /[^aeiou1-9]/gi; // Change this line
+let result = quoteSample.match(myRegex);
+console.log(result);
 ```
 
-# 1-
+# 11-Match Characters that Occur One or More Times
+
+    Sometimes, you need to match a character (or group of characters)
+    that appears one or more times in a row. This means it
+    occurs at least once, and may be repeated.
+
+You can use the + character to check if that is the case. Remember, the character or pattern has to be present consecutively. That is, the character has to repeat one after the other.
+
+For example,
+
+    /a+/g
+    would find one match in abc and return ["a"]. Because of the +, it would also find a single match in aabc and return ["aa"].
+
+If it were instead checking the string abab, it would find two matches and return ["a", "a"] because the a characters are not in a row - there is a b between them. Finally, since there is no a in the string bcd, it wouldn't find a match.
 
 ### Task
 
-```js
-
-```
+You want to find matches when the letter s occurs one or more times in Mississippi. Write a regex that uses the + sign.
 
 ### Solution
 
 ```js
-
+let difficultSpelling = "Mississippi";
+let myRegex = /s+/gi; // Change this line
+let result = difficultSpelling.match(myRegex);
+console.log(result);
 ```
 
-# 1-
+# 12-Match Characters that Occur Zero or More Times
+
+The last challenge used the plus + sign to look for characters that occur one or more times.
+
+    There's also an option that matches characters that occur zero or more times.
+
+The character to do this is the asterisk or star: \*.
+
+```js
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go\*/;
+soccerWord.match(goRegex);
+gPhrase.match(goRegex);
+oPhrase.match(goRegex);
+```
+
+In order, the three match calls would return the values ["goooooooo"], ["g"], and null.
 
 ### Task
 
-```js
-
-```
+For this challenge, chewieQuote has been initialized as the string Aaaaaaaaaaaaaaaarrrgh! behind the scenes. Create a regex chewieRegex that uses the \* character to match an uppercase A character immediately followed by zero or more lowercase a characters in chewieQuote. Your regex does not need flags or character classes, and it should not match any of the other quotes.
 
 ### Solution
 
 ```js
+// Only change code below this line
+let chewieRegex = /Aa*/; // Change this line
+// Only change code above this line
 
+let result = chewieQuote.match(chewieRegex);
+console.log(result);
 ```
 
-# 1-
+# 13-Find Characters with Lazy Matching
+
+In regular expressions, a greedy match finds the longest possible part of a string that fits the regex pattern and returns it as a match. The alternative is called a lazy match, which finds the smallest possible part of the string that satisfies the regex pattern.
+
+You can apply the regex <code>/t[a-z]\*i/</code>to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between.
+
+Regular expressions are by default greedy, so the match would return <code>["titani"]</code>. It finds the largest sub-string possible to fit the pattern.
+
+However, you can use the ? character to change it to lazy matching. "titanic" matched against the adjusted regex of <code>/t[a-z]\*?i/</code> returns ["ti"].
+
+### Note:
+
+Parsing HTML with regular expressions should be avoided, but pattern matching an HTML string with regular expressions is completely fine.
 
 ### Task
 
-```js
-
-```
+1. Fix the regex <code>/<.\*>/</code> to return the HTML tag <h1\> and not the text "<h1\>Winter is coming</h1>". Remember the wildcard . in a regular expression matches any character.
 
 ### Solution
 
 ```js
-
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*?>/i; // Change this line
+let result = text.match(myRegex);
+console.log(result);
 ```
 
-# 1-
+# 14-Find One or More Criminals in a Hunt
+
+Time to pause and test your new regex writing skills. A group of criminals escaped from jail and ran away, but you don't know how many. However, you do know that they stay close together when they are around other people. You are responsible for finding all of the criminals at once.
+
+Here's an example to review how to do this:
+
+The regex /z+/ matches the letter z when it appears one or more times in a row. It would find matches in all of the following strings:
+
+```js
+"z";
+"zzzzzz";
+"ABCzzzz";
+"zzzzABC";
+"abczzzzzzzzzzzzzzzzzzzzzabc";
+```
+
+But it does not find matches in the following strings since there are no letter z characters:
+
+```js
+"";
+"ABC";
+"abcabc";
+```
 
 ### Task
 
-```js
-
-```
+Write a greedy regex that finds one or more criminals within a group of other people. A criminal is represented by the capital letter C.
 
 ### Solution
 
 ```js
-
+let reCriminals = /C+/; // Change this line
+let str = "P1P5P4CCCcP2P6P3";
+const res = str.match(reCriminals);
+console.log(res);
 ```
 
-# 1-
+# 15-Match Beginning String Patterns
+
+Prior challenges showed that regular expressions can be used to look for a number of matches. They are also used to search for patterns in specific positions in strings.
+
+In an earlier challenge, you used the caret character (^) inside a character set to create a negated character set in the form [^thingsThatWillNotBeMatched]. Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+
+```js
+let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/;
+firstRegex.test(firstString);
+let notFirst = "You can't find Ricky now.";
+firstRegex.test(notFirst);
+```
+
+The first test call would return true, while the second would return false.
 
 ### Task
 
-```js
-
-```
+Use the caret character in a regex to find Cal only in the beginning of the string rickyAndCal.
 
 ### Solution
 
 ```js
-
+let rickyAndCal = "Cal and Ricky both like racing.";
+let calRegex = /^Cal/; // Change this line
+let result = calRegex.test(rickyAndCal);
+let result1 = rickyAndCal.match(calRegex);
+console.log(result);
+console.log(result1);
 ```
 
-# 1-
+# 16-Match Ending String Patterns
+
+In the last challenge, you learned to use the caret character to search for patterns at the beginning of strings. There is also a way to search for patterns at the end of strings.
+
+You can search the end of strings using the dollar sign character $ at the end of the regex.
+
+```js
+let theEnding = "This is a never ending story";
+let storyRegex = /story$/;
+storyRegex.test(theEnding);
+let noEnding = "Sometimes a story will have to end";
+storyRegex.test(noEnding);
+```
+
+The first test call would return true, while the second would return false.
 
 ### Task
 
-```js
-
-```
+Use the anchor character ($) to match the string caboose at the end of the string caboose.
 
 ### Solution
 
 ```js
-
+let caboose = "The last car on a train is the caboose";
+let lastRegex = /caboose$/; // Change this line
+let result = lastRegex.test(caboose);
+let result1 = caboose.match(lastRegex);
+console.log(result);
+console.log(result1);
 ```
 
-# 1-
+# 17-Match All Letters and Numbers
+
+Using character classes, you were able to search for all letters of the alphabet with [a-z]. This kind of character class is common enough that there is a shortcut for it, although it includes a few extra characters as well.
+
+The closest character class in JavaScript to match the alphabet is \w. This shortcut is equal to [A-Za-z0-9_]. This character class matches upper and lowercase letters plus numbers. Note, this character class also includes the underscore character (\_).
+
+```js
+let longHand = /[A-Za-z0-9_]+/;
+let shortHand = /\w+/;
+let numbers = "42";
+let varNames = "important_var";
+longHand.test(numbers);
+shortHand.test(numbers);
+longHand.test(varNames);
+shortHand.test(varNames);
+```
+
+All four of these test calls would return true.
+
+These shortcut character classes are also known as shorthand character classes.
 
 ### Task
 
-```js
-
-```
+1. Use the shorthand character class \w to count the number of alphanumeric characters in various quotes and strings.
 
 ### Solution
 
 ```js
-
+let quoteSample = "The five boxing wizards jump quickly.";
+let alphabetRegexV2 = /\w/g; // Change this line
+let result = quoteSample.match(alphabetRegexV2).length;
+console.log(result);
 ```
 
-# 1-
+# 18-Match Everything But Letters and Numbers
+
+You've learned that you can use a shortcut to match alphanumerics [A-Za-z0-9_] using \w. A natural pattern you might want to search for is the opposite of alphanumerics.
+
+You can search for the opposite of the \w with \W. Note, the opposite pattern uses a capital letter. This shortcut is the same as [^A-Za-z0-9_].
+
+```js
+let shortHand = /\W/;
+let numbers = "42%";
+let sentence = "Coding!";
+numbers.match(shortHand);
+sentence.match(shortHand);
+```
+
+The first match call would return the value ["%"] and the second would return ["!"].
 
 ### Task
 
-```js
-
-```
+1. Use the shorthand character class \W to count the number of non-alphanumeric characters in various quotes and strings.
 
 ### Solution
 
 ```js
-
+let quoteSample = "The five boxing wizards jump quickly.";
+let nonAlphabetRegex = /\W/g; // Change this line
+let result = quoteSample.match(nonAlphabetRegex).length;
+console.log(result);
 ```
 
 # 1-
