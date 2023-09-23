@@ -691,7 +691,249 @@ let result = quoteSample.match(nonAlphabetRegex).length;
 console.log(result);
 ```
 
-# 1-
+# 19-Match All Numbers
+
+You've learned shortcuts for common string patterns like alphanumerics. Another common pattern is looking for just digits or numbers.
+
+The shortcut to look for <code>digit characters is \d</code>, with a lowercase d. This is equal to the character class [0-9], which looks for a single character of any number between zero and nine.
+
+### Task
+
+Use the shorthand character class \d to count how many digits are in movie titles. Written out numbers ("six" instead of 6) do not count.
+
+### Solution
+
+```js
+let movieName = "2001: A Space Odyssey";
+let numRegex = /\d/g; // Change this line
+let result = movieName.match(numRegex).length;
+console.log(result);
+```
+
+# 20-Match All Non-Numbers
+
+The last challenge showed how to search for digits using the shortcut \d with a lowercase d.
+
+You can also search for non-digits using a similar shortcut that uses an <code>uppercase \D</code> instead.
+
+The shortcut to look for non-digit characters is \D. This is equal to the character class [^0-9], which looks for a single character that is not a number between zero and nine.
+
+### Task
+
+Use the shorthand character class for non-digits \D to count how many non-digits are in movie titles.
+
+### Solution
+
+```js
+let movieName = "2001: A Space Odyssey";
+let noNumRegex = /\D/g; // Change this line
+let result = movieName.match(noNumRegex).length;
+console.log(result);
+```
+
+# 21-Restrict Possible Usernames
+
+Usernames are used everywhere on the internet. They are what give users a unique identity on their favorite sites.
+
+You need to check all the usernames in a database. Here are some simple rules that users have to follow when creating their username.
+
+- Usernames can only use alpha-numeric characters.
+- The only numbers in the username have to be at the end. There can be zero or more of them at the end.
+- Username cannot start with the number.
+- Username letters can be lowercase and uppercase.
+- Usernames have to be at least two characters long. - A two-character username can only use alphabet letters as characters.
+
+### Task
+
+Change the regex userCheck to fit the constraints listed above.
+
+### Solution
+
+```js
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z][a-z]+\d*$|[a-z]\d\d+$/gi; // Change this line
+let result = username.match(userCheck);
+console.log(result);
+```
+
+### Code Explanation
+
+- ^ - start of input
+- [a-z] - first character is a letter
+- [a-z]+ - following characters are letters
+- \d\*$ - input ends with 0 or more digits
+- | - or
+- ^[a-z] - first character is a letter
+- \d\d+ - following characters are 2 or more digits
+- $ - end of input
+
+# 22-Match Whitespace
+
+The challenges so far have covered matching letters of the alphabet and numbers. You can also match the whitespace or spaces between letters.
+
+You can search for whitespace using <code>\s</code>, which is a lowercase s.
+
+This pattern not only matches whitespace, but also carriage return, tab, form feed, and new line characters. You can think of it as similar to the character class [ \r\t\f\n\v].
+
+```js
+let whiteSpace = "Whitespace. Whitespace everywhere!";
+let spaceRegex = /\s/g;
+whiteSpace.match(spaceRegex);
+```
+
+This match call would return [" ", " "].
+
+### Task
+
+Change the regex countWhiteSpace to look for multiple whitespace characters in a string.
+
+### Solution
+
+```js
+let sample = "Whitespace is important in separating words";
+let countWhiteSpace = /\s/g; // Change this line
+let result = sample.match(countWhiteSpace);
+console.log(result);
+```
+
+# 23-Match Non-Whitespace Characters
+
+You learned about searching for whitespace using \s, with a lowercase s. You can also search for everything except whitespace.
+
+Search for non-whitespace using <code>\S</code>, which is an uppercase s.
+
+This pattern will not match whitespace, carriage return, tab, form feed, and new line characters. You can think of it being similar to the character class [^ \r\t\f\n\v].
+
+```js
+let whiteSpace = "Whitespace. Whitespace everywhere!";
+let nonSpaceRegex = /\S/g;
+whiteSpace.match(nonSpaceRegex).length;
+```
+
+The value returned by the .length method would be 32.
+
+### Task
+
+Change the regex countNonWhiteSpace to look for multiple non-whitespace characters in a string.
+
+### Solution
+
+```js
+let sample = "Whitespace is important in separating words";
+let countNonWhiteSpace = /\S/g; // Change this line
+let result = sample.match(countNonWhiteSpace);
+console.log(result);
+```
+
+<hr>
+
+# 24-Specify Upper and Lower Number of Matches
+
+Recall that you use the plus sign + to look for one or more characters and the asterisk \* to look for zero or more characters. These are convenient but sometimes you want to match a certain range of patterns.
+
+    You can specify the lower and upper number of patterns with quantity specifiers.
+
+Quantity specifiers are used with <code>curly brackets ({</code> and <code>})</code>. You put two numbers between the curly brackets - for the lower and upper number of patterns.
+
+For example, to match only the letter a appearing between 3 and 5 times in the string ah, your regex would be /a{3,5}h/.
+
+```js
+let A4 = "aaaah";
+let A2 = "aah";
+let multipleA = /a{3,5}h/;
+multipleA.test(A4);
+multipleA.test(A2);
+```
+
+The first test call would return true, while the second would return false.
+
+### Task
+
+Change the regex ohRegex to match the entire phrase Oh no only when it has 3 to 6 letter h's.
+
+### Solution
+
+```js
+let ohStr = "Ohhh no";
+let ohRegex = /oh{3,6}\sno/gi; // Change this line
+let result = ohStr.match(ohRegex);
+console.log(result);
+```
+
+<hr>
+
+# 25-Specify Only the Lower Number of Matches
+
+You can specify the lower and upper number of patterns with quantity specifiers using curly brackets.
+
+    Sometimes you only want to specify the lower number of patterns with no upper limit.
+
+To only specify the lower number of patterns, keep the first number followed by a comma.
+
+For example, to match only the string hah with the letter a appearing at least 3 times, your regex would be /ha{3,}h/.
+
+```js
+let A4 = "haaaah";
+let A2 = "haah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleA = /ha{3,}h/;
+multipleA.test(A4);
+multipleA.test(A2);
+multipleA.test(A100);
+```
+
+In order, the three test calls would return true, false, and true.
+
+### Task
+
+Change the regex haRegex to match the word Hazzah only when it has four or more letter z's.
+
+### Solution
+
+```js
+let haStr = "Hazzzzah";
+let haRegex = /haz{4,}ah/gi; // Change this line
+let result = haStr.match(haRegex);
+console.log(result);
+```
+
+<hr>
+
+# 26-Specify Exact Number of Matches
+
+You can specify the lower and upper number of patterns with quantity specifiers using curly brackets. Sometimes you only want a specific number of matches.
+
+To specify a certain number of patterns, just have that one number between the curly brackets.
+
+For example, to match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
+
+```js
+let A4 = "haaaah";
+let A3 = "haaah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleHA = /ha{3}h/;
+multipleHA.test(A4);
+multipleHA.test(A3);
+multipleHA.test(A100);
+```
+
+In order, the three test calls would return false, true, and false.
+
+### Task
+
+Change the regex timRegex to match the word Timber only when it has four letter m's.
+
+### Solution
+
+```js
+let timStr = "Timmmmber";
+let timRegex = /tim{4}ber/gi; // Change this line
+let result = timRegex.test(timStr);
+```
+
+<hr>
+
+# 23-
 
 ### Task
 
@@ -705,7 +947,9 @@ console.log(result);
 
 ```
 
-# 1-
+<hr>
+
+# 23-
 
 ### Task
 
@@ -719,7 +963,9 @@ console.log(result);
 
 ```
 
-# 1-
+<hr>
+
+# 23-
 
 ### Task
 
@@ -733,7 +979,9 @@ console.log(result);
 
 ```
 
-# 1-
+<hr>
+
+# 23-
 
 ### Task
 
@@ -747,7 +995,185 @@ console.log(result);
 
 ```
 
-# 1-
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+<hr>
+
+# 23-
 
 ### Task
 
