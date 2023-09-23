@@ -933,98 +933,223 @@ let result = timRegex.test(timStr);
 
 <hr>
 
-# 23-
+# 24-Check for All or None
+
+Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless.
+
+You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element. You can think of this symbol as saying the previous element is optional.
+
+For example, there are slight differences in American and British English and you can use the question mark to match both spellings.
+
+```js
+let american = "color";
+let british = "colour";
+let rainbowRegex = /colou?r/;
+rainbowRegex.test(american);
+rainbowRegex.test(british);
+```
+
+Both uses of the test method would return true.
 
 ### Task
 
-```js
-
-```
+Change the regex favRegex to match both the American English (favorite) and the British English (favourite) version of the word.
 
 ### Solution
 
 ```js
-
+let favWord = "favorite";
+let favRegex = /favou?rite/; // Change this line
+let result = favRegex.test(favWord);
+console.log(result);
 ```
 
 <hr>
 
-# 23-
+# 25-Positive and Negative Lookahead
+
+    Lookaheads are patterns that tell JavaScript to look-ahead in your string to check for patterns further along.
+    This can be useful when you want to search for multiple patterns over the same string.
+
+There are two kinds of lookaheads: positive lookahead and negative lookahead.
+
+A positive lookahead will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
+
+On the other hand, a negative lookahead will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+
+Lookaheads are a bit confusing but some examples will help.
+
+```js
+let quit = "qu";
+let noquit = "qt";
+let quRegex = /q(?=u)/;
+let qRegex = /q(?!u)/;
+quit.match(quRegex);
+noquit.match(qRegex);
+```
+
+Both of these match calls would return ["q"].
+
+A more practical use of lookaheads is to check two or more patterns in one string. Here is a (naively) simple password checker that looks for between 3 and 6 characters and at least one number:
+
+```js
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D\*\d)/;
+checkPass.test(password);
+```
 
 ### Task
 
-```js
-
-```
+Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, and have two consecutive digits.
 
 ### Solution
 
 ```js
-
+let sampleWord = "astronaut";
+let sampleWord1 = "8pass99";
+let pwRegex = /(?=\w{6})(?=\w*\d{2})/g; // Change this line
+let result = sampleWord.match(pwRegex);
+let result1 = sampleWord1.match(pwRegex);
+console.log(result);
+console.log(result1);
 ```
 
 <hr>
 
-# 23-
+# 26-Check For Mixed Grouping of Characters
+
+Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+
+If you want to find either Penguin or Pumpkin in a string, you can use the following Regular Expression: <code>/P(engu|umpk)in/g</code>
+
+Then check whether the desired string groups are in the test string by using the test() method.
+
+```js
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr);
+```
+
+The test method here would return true.
 
 ### Task
 
-```js
+1. Fix the regex so that it checks for the names of Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner and it should make concessions for middle names.
 
-```
+2. Then fix the code so that the regex that you have created is checked against myString and either true or false is returned depending on whether the regex matches.
 
 ### Solution
 
 ```js
-
+let myString = "Eleanor Roosevelt";
+let myRegex = /(franklin|eleanor) (([A-Z].?|\w+) )?roosevelt/gi;
+let result = myRegex.test(myString);
+let result1 = myString.match(myRegex);
+console.log(result);
+console.log(result1);
 ```
 
 <hr>
 
-# 23-
+# 27-Reuse Patterns Using Capture Groups
+
+Say you want to match a word that occurs multiple times like below.
+
+```js
+let repeatStr = "row row row your boat";
+```
+
+You could use /row row row/, but what if you don't know the specific word repeated? Capture groups can be used to find repeated substrings.
+
+Capture groups are constructed by enclosing the regex pattern to be captured in parentheses. In this case, the goal is to capture a word consisting of alphanumeric characters
+
+<code>so the capture group will be \w+ enclosed by parentheses: /(\w+)/</code>
+
+The substring matched by the group is saved to a temporary "variable", which can be accessed within the same regex using a backslash and the number of the capture group (e.g. \1). Capture groups are automatically numbered by the position of their opening parentheses (left to right), starting at 1.
+
+The example below matches a word that occurs thrice separated by spaces:
+
+```js
+let repeatRegex = /(\w+) \1 \1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["row row row", "row"]
+```
 
 ### Task
 
-```js
+1. Using the .match() method on a string will return an array with the matched substring, along with its captured groups.
 
-```
+2. Use capture groups in reRegex to match a string that consists of only the same number repeated exactly three times separated by single spaces.
 
 ### Solution
 
 ```js
-
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+) \1 \1$/g; // Change this line
+let result = reRegex.test(repeatNum);
+let result1 = repeatNum.match(reRegex);
+console.log(result);
+console.log(result1);
 ```
 
 <hr>
 
-# 23-
+# 28-Use Capture Groups to Search and Replace
+
+Searching is useful. However, you can make searching even more powerful when it also changes (or replaces) the text you match.
+
+You can search and replace text in a string using .replace() on a string. The inputs for .replace() is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something.
+
+```js
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");
+```
+
+The replace call would return the string The sky is blue..
+
+You can also access capture groups in the replacement string with dollar signs ($).
+
+```js
+"Code Camp".replace(/(\w+)\s(\w+)/, "$2 $1");
+```
+
+The replace call would return the string Camp Code.
 
 ### Task
 
-```js
-
-```
+Write a regex fixRegex using three capture groups that will search for each word in the string one two three. Then update the replaceText variable to replace one two three with the string three two one and assign the result to the result variable. Make sure you are utilizing capture groups in the replacement string using the dollar sign ($) syntax.
 
 ### Solution
 
 ```js
-
+let str = "one two three";
+let fixRegex = /(\w+)\s(\w+)\s(\w+)/; // Change this line
+let replaceText = "$3 $2 $1"; // Change this line
+let result = str.replace(fixRegex, replaceText);
+console.log(result);
 ```
 
 <hr>
 
-# 23-
+# 23-Remove Whitespace from Start and End
+
+    Sometimes whitespace characters around strings are not wanted but are there.
+    Typical processing of strings is to remove the whitespace at the start and end of it.
 
 ### Task
 
-```js
+1. Write a regex and use the appropriate string methods to remove whitespace at the beginning and end of strings.
 
-```
+2. Note: The <code>String.prototype.trim()</code> method would work here, but you'll need to complete this challenge using regular expressions.
 
 ### Solution
 
 ```js
-
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/gi; // Change this line
+let result = hello.replace(wsRegex, ""); // Change this line
+console.log(result);
 ```
 
 <hr>
