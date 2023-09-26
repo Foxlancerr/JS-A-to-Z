@@ -833,10 +833,6 @@ Both of these would return true.
 
 Finish writing the function so that it returns true if the object passed to it contains all four names, Alan, Jeff, Sarah and Ryan and returns false otherwise.
 
-```js
-
-```
-
 ### Solution
 
 ```js
@@ -891,6 +887,8 @@ We defined the variable food in the loop head and this variable was set to each 
 
 NOTE: Objects do not maintain an ordering to stored keys like arrays do; thus a key's position on an object, or the relative order in which it appears, is irrelevant when referencing or accessing that key.
 
+### Task
+
 We've defined a function countOnline which accepts one argument, allUsers. Use a for...in statement inside this function to loop through the allUsers object and return the number of users whose online property is set to true. An example of an object which could be passed to countOnline is shown below. Each user will have an online property set to either true or false.
 
 ```js
@@ -907,30 +905,72 @@ We've defined a function countOnline which accepts one argument, allUsers. Use a
 }
 ```
 
-### Task
+### Solution
 
 ```js
+const users = {
+  Alan: {
+    online: false,
+  },
+  Jeff: {
+    online: true,
+  },
+  Sarah: {
+    online: false,
+  },
+};
 
+function countOnline(allUsers) {
+  // Only change code below this line
+  let result = 0;
+  for (let user in allUsers) {
+    if (allUsers[user].online == true) result++;
+  }
+  return result;
+  // Only change code above this line
+}
+
+console.log(countOnline(users));
 ```
+
+# 16-Generate an Array of All Object Keys with Object.keys()
+
+We can also generate an array which contains all the keys stored in an object with the Object.keys() method. This method takes an object as the argument and returns an array of strings representing each property in the object. Again, there will be no specific order to the entries in the array.
+
+### Task
+
+Finish writing the getArrayOfUsers function so that it returns an array containing all the properties in the object it receives as an argument.
+
 
 ### Solution
 
 ```js
+let users = {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
 
-```
+function getArrayOfUsers(obj) {
+  // Only change code below this line
+  return Object.keys(obj)
+  // Only change code above this line
+}
 
-# 15-
-
-### Task
-
-```js
-
-```
-
-### Solution
-
-```js
-
+console.log(getArrayOfUsers(users));
 ```
 
 # 16-
