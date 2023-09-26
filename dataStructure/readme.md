@@ -811,7 +811,143 @@ delete foods.strawberries;
 console.log(foods);
 ```
 
-# 7-
+# 15-Check if an Object has a Property
+
+Now we can add, modify, and remove keys from objects. But what if we just wanted to know if an object has a specific property?
+
+    JavaScript provides us with two different ways to do this.
+
+1. One uses the hasOwnProperty() method
+2. and the other uses the <code>in</code> keyword.
+
+If we have an object users with a property of Alan, we could check for its presence in either of the following ways:
+
+```js
+users.hasOwnProperty("Alan");
+"Alan" in users;
+```
+
+Both of these would return true.
+
+### Task
+
+Finish writing the function so that it returns true if the object passed to it contains all four names, Alan, Jeff, Sarah and Ryan and returns false otherwise.
+
+```js
+
+```
+
+### Solution
+
+```js
+let users = {
+  Alan: {
+    age: 27,
+    online: true,
+  },
+  Jeff: {
+    age: 32,
+    online: true,
+  },
+  Sarah: {
+    age: 48,
+    online: true,
+  },
+  Ryan: {
+    age: 19,
+    online: true,
+  },
+};
+
+function isEveryoneHere(userObj) {
+  // Only change code below this line
+  return ["Alan", "Jeff", "Sarah", "Ryan"].every((name) =>
+    userObj.hasOwnProperty(name)
+  );
+  // Only change code above this line
+}
+
+console.log(isEveryoneHere(users));
+```
+
+# 15-Iterate Through the Keys of an Object with a for...in Statement
+
+Sometimes you need to iterate through all the keys within an object. You can use a for...in loop to do this. The for...in loop looks like:
+
+```js
+const refrigerator = {
+  milk: 1,
+  eggs: 12,
+};
+
+for (const food in refrigerator) {
+  console.log(food, refrigerator[food]);
+}
+```
+
+This code logs milk 1 and eggs 12, with each key-value pair on its own line.
+
+We defined the variable food in the loop head and this variable was set to each of the object's keys on each iteration, resulting in each food's name being printed to the console.
+
+NOTE: Objects do not maintain an ordering to stored keys like arrays do; thus a key's position on an object, or the relative order in which it appears, is irrelevant when referencing or accessing that key.
+
+We've defined a function countOnline which accepts one argument, allUsers. Use a for...in statement inside this function to loop through the allUsers object and return the number of users whose online property is set to true. An example of an object which could be passed to countOnline is shown below. Each user will have an online property set to either true or false.
+
+```js
+{
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+```
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+# 15-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+# 16-
+
+### Task
+
+```js
+
+```
+
+### Solution
+
+```js
+
+```
+
+# 17-
 
 ### Task
 
